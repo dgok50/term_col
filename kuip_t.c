@@ -322,7 +322,9 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 	  //ups_bat_stat = -100;
 	  ups_stat = get_ups_data (&ups_v, &ups_load, &ups_frq, &ups_bat_stat);
 	  
-	  if(get_a1pr_data ("192.168.0.89", rx_s, RXL) == src) {  
+    
+          for(int errors = 0; errors < 5; errors ++) {
+	   if(get_a1pr_data ("192.168.0.89", rx_s, RXL) == src) {  
 	    y = splint_rtoa (rx_s, RXL, src, name_mas_sec, dat_mas_sec);
             //syslog (LOG_NOTICE, "SPLINT_RTOA: y=%d, rs=%d, rc=%d", y, RXL, src);
 	    secr=1;
@@ -349,6 +351,8 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 			}
 		}
 		write_usred (&sred_sec, 3, &s_temp, &s_hum, &s_evc);
+		break;
+	   }
 	  }
 	  if (ups_stat == 0)
 	    {
