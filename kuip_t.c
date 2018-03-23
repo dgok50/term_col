@@ -20,9 +20,10 @@
 
 #define DSE -100
 #define RXL 512
-#define VER "0.7"
-#define HWVER "0.3"
 
+
+const int sw_ver = 81;
+const int hw_ver = 32;
 
 int stop = 0;
 void stop_all();
@@ -157,15 +158,23 @@ void skeleton_daemon ()
 
 int main (int argc, char* argv[])
 {
-int nodem=1, wait = 0;
+int nodem=1, wait = 0; // Обработчик входных параметров
   if(argc>1) {
     for(int i = 0; i<argc; i++){
 	if (argv[i][0] == '-'){
-	    if(argv[i][1] == 'd'){
+	    if(argv[i][1] == 'd'){ //Запустить как демон
 		nodem=0;
 	    }
-	    else if(argv[i][1] == 'b'){
+	    else if(argv[i][1] == 'b'){ //запустить с задержкой 2 мин
 		wait = 1;
+	    }
+	    else if(argv[i][1] == 'v'){ //запустить с задержкой 2 мин
+		printf("KUIP REPITER SERVER V%d.%d.%d\n HW_VER: %d.%d.%d\n", sw_ver/100, (sw_ver%100)/10, sw_ver%10, hw_ver/100, (hw_ver%100)/10, hw_ver%10);
+		return 0;
+	    }
+	    else if(argv[i][1] == 'h'){ //запустить с задержкой 2 мин
+		printf("KUIP REPITER SERVER V%d.%d.%d\n Параметры:\n  -d Запуск в режиме демона\n  -b Пауза 2 мин перед началом работы сервиса\n  -v Вывести версию и выйти\n",  sw_ver/100, (sw_ver%100)/10, sw_ver%10);
+		return 0;
 	    }
 	}
     }
@@ -617,8 +626,8 @@ int nodem=1, wait = 0;
 		   Tm->tm_min, Tm->tm_sec);
 
 	  fprintf (RTF, "\\pard Main module:\\par\n");
-	  fprintf (RTF, " App ver: " VER "\\par\n");
-	  fprintf (RTF, " HW ver: " HWVER "\\par\n\\par\n");
+	  fprintf (RTF, " App ver: %d.%d.%d\\par\n", sw_ver/100, (sw_ver%100)/10, sw_ver%10);
+	  fprintf (RTF, " HW ver: %d.%d.%d\\par\n\\par\n", hw_ver/100, (hw_ver%100)/10, hw_ver%10);
 
 	  fprintf (RTF, "External module 1:\\par\n");
 	  fprintf (RTF, " Module type: esp8266, atmega328p-pu(base dev)\\par\n");
@@ -679,8 +688,8 @@ int nodem=1, wait = 0;
 		   Tm->tm_min, Tm->tm_sec);
 
 	  fprintf (RTF, "Main module:\n");
-	  fprintf (RTF, " App ver: " VER "\n");
-	  fprintf (RTF, " HW ver: " HWVER "\n\n");
+	  fprintf (RTF, " App ver: %d.%d.%d\n", sw_ver/100, (sw_ver%100)/10, sw_ver%10);
+	  fprintf (RTF, " HW ver: %d.%d.%d\n\n", hw_ver/100, (hw_ver%100)/10, hw_ver%10);
 
 	  fprintf (RTF, "External module 1:\n");
 	  fprintf (RTF, " Module type: esp8266, atmega328p-pu(base dev)\n");
