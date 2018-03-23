@@ -4,6 +4,7 @@
 #include <string.h>
 #include <iniparser.h>
 #include <termios.h>
+#include <fcntl.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/time.h>
@@ -43,7 +44,7 @@ int stop_file(void) {
         ptolog( debug,  LOG_F, "\nЗавершение работы.");
         for(;;)
         {
-            if(rrd_trs == 1)
+            if(rrd_trs == 1 || sens_trs == 1 || count_trs == 1 || dev_trs == 1)
             {
                 ptolog( debug,  LOG_F, "\n");
                 sleep(3);
@@ -373,7 +374,7 @@ int termd(_Bool gdebug,
     {
         sleep(1);
     }
-    sleep(3);
+    sleep(30);
 
     pthread_mutex_lock( &mutex_count );
     iniparser_set(conf, "count", NULL);

@@ -1,4 +1,3 @@
-
 [main]
 db_name                        = main
 txt_dir                        = /var/www

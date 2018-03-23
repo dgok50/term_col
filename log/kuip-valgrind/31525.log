@@ -1,0 +1,848 @@
+==00:00:00:00.000 31525== Memcheck, a memory error detector
+==00:00:00:00.000 31525== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
+==00:00:00:00.000 31525== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
+==00:00:00:00.000 31525== Command: ./kuip -d
+==00:00:00:00.000 31525== Parent PID: 31521
+==00:00:00:00.000 31525== 
+--00:00:00:00.390 31525-- WARNING: Serious error when reading debug info
+--00:00:00:00.390 31525-- When reading debug info from /lib/arm-linux-gnueabihf/ld-2.24.so:
+--00:00:00:00.390 31525-- Ignoring non-Dwarf2/3/4 block in .debug_info
+--00:00:00:00.390 31525-- WARNING: Serious error when reading debug info
+--00:00:00:00.390 31525-- When reading debug info from /lib/arm-linux-gnueabihf/ld-2.24.so:
+--00:00:00:00.390 31525-- Last block truncated in .debug_info; ignoring
+--00:00:00:00.390 31525-- WARNING: Serious error when reading debug info
+--00:00:00:00.390 31525-- When reading debug info from /lib/arm-linux-gnueabihf/ld-2.24.so:
+--00:00:00:00.390 31525-- Overrun whilst reading .debug_ranges section(1)
+==00:00:00:09.518 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.518 31525==    at 0x401B230: index (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.518 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.518 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.518 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:index
+}
+==00:00:00:09.519 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.519 31525==    at 0x401B234: index (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.519 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.519 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.519 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:index
+}
+==00:00:00:09.519 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.519 31525==    at 0x4008B8C: expand_dynamic_string_token (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.519 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.519 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.519 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:expand_dynamic_string_token
+}
+==00:00:00:09.522 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.522 31525==    at 0x401B6E0: strlen (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.522 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.522 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.522 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:strlen
+}
+==00:00:00:09.523 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.523 31525==    at 0x401B6E4: strlen (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.523 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.523 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.523 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:strlen
+}
+==00:00:00:09.523 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.523 31525==    at 0x40194AC: __libc_memalign (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.523 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.523 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.523 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:__libc_memalign
+}
+==00:00:00:09.523 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.523 31525==    at 0x40194B8: __libc_memalign (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.523 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.523 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.524 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:__libc_memalign
+}
+==00:00:00:09.524 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.524 31525==    at 0x401C0F8: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.524 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.524 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.524 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+==00:00:00:09.524 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.524 31525==    at 0x401C118: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.524 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.524 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.524 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+==00:00:00:09.525 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.525 31525==    at 0x401C128: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.525 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.525 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.525 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+==00:00:00:09.529 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.529 31525==    at 0x401C144: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.529 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.529 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.529 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+==00:00:00:09.529 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.529 31525==    at 0x401C14C: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.529 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.529 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.529 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+==00:00:00:09.530 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.530 31525==    at 0x401C174: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.530 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.530 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.530 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+==00:00:00:09.530 31525== Use of uninitialised value of size 4
+==00:00:00:09.530 31525==    at 0x401C174: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.530 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.530 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.530 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:memcpy
+}
+==00:00:00:09.530 31525== Use of uninitialised value of size 4
+==00:00:00:09.530 31525==    at 0x401C19C: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.530 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.530 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.530 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:memcpy
+}
+==00:00:00:09.530 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.531 31525==    at 0x401C1B0: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.531 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.531 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.531 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+==00:00:00:09.531 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.531 31525==    at 0x401C1B4: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.531 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.531 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.531 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+==00:00:00:09.531 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.531 31525==    at 0x401C1C0: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.531 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.531 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.531 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+==00:00:00:09.620 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.620 31525==    at 0x40195EC: calloc (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.620 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.620 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.620 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:calloc
+}
+==00:00:00:09.620 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.620 31525==    at 0x400C6D4: _dl_new_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.620 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.620 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.620 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_dl_new_object
+}
+==00:00:00:09.621 31525== Use of uninitialised value of size 4
+==00:00:00:09.621 31525==    at 0x400C6EC: _dl_new_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.621 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.621 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.621 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_new_object
+}
+==00:00:00:09.621 31525== Use of uninitialised value of size 4
+==00:00:00:09.621 31525==    at 0x401C140: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.621 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.621 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.621 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:memcpy
+}
+==00:00:00:09.621 31525== Use of uninitialised value of size 4
+==00:00:00:09.621 31525==    at 0x400C704: _dl_new_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.621 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.621 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.621 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_new_object
+}
+==00:00:00:09.621 31525== Use of uninitialised value of size 4
+==00:00:00:09.622 31525==    at 0x400C724: _dl_new_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.622 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.622 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.622 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_new_object
+}
+==00:00:00:09.622 31525== Use of uninitialised value of size 4
+==00:00:00:09.622 31525==    at 0x400C7A0: _dl_new_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.622 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.622 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.622 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_new_object
+}
+==00:00:00:09.623 31525== Use of uninitialised value of size 4
+==00:00:00:09.623 31525==    at 0x400C7B4: _dl_new_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.623 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.623 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.623 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_new_object
+}
+==00:00:00:09.624 31525== Use of uninitialised value of size 4
+==00:00:00:09.624 31525==    at 0x400C880: _dl_new_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.625 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.625 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.625 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_new_object
+}
+==00:00:00:09.625 31525== Use of uninitialised value of size 4
+==00:00:00:09.625 31525==    at 0x400C7F0: _dl_new_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.625 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.625 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.625 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_new_object
+}
+==00:00:00:09.628 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.628 31525==    at 0x400C930: _dl_new_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.628 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.628 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.628 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_dl_new_object
+}
+==00:00:00:09.629 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.629 31525==    at 0x401C104: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.629 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.629 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.629 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+==00:00:00:09.630 31525== Use of uninitialised value of size 4
+==00:00:00:09.630 31525==    at 0x400C8E4: _dl_new_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.630 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.630 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.630 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_new_object
+}
+==00:00:00:09.634 31525== Use of uninitialised value of size 4
+==00:00:00:09.634 31525==    at 0x400C900: _dl_new_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.634 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.634 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.634 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_new_object
+}
+==00:00:00:09.634 31525== Use of uninitialised value of size 4
+==00:00:00:09.634 31525==    at 0x400C870: _dl_new_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.634 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.634 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.634 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_new_object
+}
+==00:00:00:09.635 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.635 31525==    at 0x40064AC: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.635 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.635 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.635 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:09.638 31525== Use of uninitialised value of size 4
+==00:00:00:09.638 31525==    at 0x40064D8: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.638 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.638 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.638 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:09.638 31525== Use of uninitialised value of size 4
+==00:00:00:09.638 31525==    at 0x40064DC: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.638 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.638 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.638 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:09.651 31525== Use of uninitialised value of size 4
+==00:00:00:09.651 31525==    at 0x4006578: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.651 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.652 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.652 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:09.657 31525== Use of uninitialised value of size 4
+==00:00:00:09.657 31525==    at 0x40065BC: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.657 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.657 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.657 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:09.657 31525== Use of uninitialised value of size 4
+==00:00:00:09.657 31525==    at 0x40065C0: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.657 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.657 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.657 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:09.660 31525== Use of uninitialised value of size 4
+==00:00:00:09.660 31525==    at 0x4006748: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.660 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.660 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.660 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:09.668 31525== Use of uninitialised value of size 4
+==00:00:00:09.668 31525==    at 0x40067D4: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.668 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.668 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.668 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:09.669 31525== Use of uninitialised value of size 4
+==00:00:00:09.669 31525==    at 0x40067EC: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.669 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.669 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.669 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:09.674 31525== Use of uninitialised value of size 4
+==00:00:00:09.674 31525==    at 0x40067F8: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.674 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.674 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.674 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:09.677 31525== Use of uninitialised value of size 4
+==00:00:00:09.677 31525==    at 0x4007098: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.677 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.677 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.677 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:09.682 31525== Use of uninitialised value of size 4
+==00:00:00:09.682 31525==    at 0x40068B8: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.682 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.682 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.682 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:09.809 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.809 31525==    at 0x40124A0: _dl_name_match_p (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.810 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.810 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.810 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_dl_name_match_p
+}
+==00:00:00:09.810 31525== Use of uninitialised value of size 4
+==00:00:00:09.810 31525==    at 0x40124B4: _dl_name_match_p (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.810 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.810 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.810 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_name_match_p
+}
+==00:00:00:09.810 31525== Use of uninitialised value of size 4
+==00:00:00:09.810 31525==    at 0x401B280: strcmp (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.810 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.810 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.810 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:strcmp
+}
+==00:00:00:09.810 31525== Use of uninitialised value of size 4
+==00:00:00:09.810 31525==    at 0x40124A8: _dl_name_match_p (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.810 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.811 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.811 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_name_match_p
+}
+==00:00:00:09.811 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.811 31525==    at 0x401B678: strdup (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.811 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.811 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.811 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:strdup
+}
+==00:00:00:09.811 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.811 31525==    at 0x401C170: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.811 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.811 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.811 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+==00:00:00:09.812 31525== Use of uninitialised value of size 4
+==00:00:00:09.812 31525==    at 0x401C170: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.812 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.812 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.812 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:memcpy
+}
+==00:00:00:09.812 31525== Use of uninitialised value of size 4
+==00:00:00:09.812 31525==    at 0x401C198: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.812 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.812 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.812 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:memcpy
+}
+==00:00:00:09.812 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:09.812 31525==    at 0x40098F8: _dl_map_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.812 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.812 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.812 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_dl_map_object
+}
+==00:00:00:09.813 31525== Syscall param open(filename) contains uninitialised byte(s)
+==00:00:00:09.813 31525==    at 0x401ABBC: open (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.813 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.813 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.813 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   open(filename)
+   fun:open
+}
+==00:00:00:09.821 31525== Use of uninitialised value of size 4
+==00:00:00:09.822 31525==    at 0x400C70C: _dl_new_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.822 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.822 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.822 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_new_object
+}
+==00:00:00:09.822 31525== Use of uninitialised value of size 4
+==00:00:00:09.822 31525==    at 0x401B690: strlen (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.822 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.822 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.822 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:strlen
+}
+==00:00:00:09.822 31525== Use of uninitialised value of size 4
+==00:00:00:09.822 31525==    at 0x401B6A8: strlen (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.822 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.822 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.822 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:strlen
+}
+==00:00:00:09.823 31525== Use of uninitialised value of size 4
+==00:00:00:09.823 31525==    at 0x401C138: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.823 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:09.823 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:09.823 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:memcpy
+}
+==00:00:00:10.118 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:10.118 31525==    at 0x4009CBC: _dl_map_object (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.118 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.118 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.118 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_dl_map_object
+}
+==00:00:00:10.141 31525== Use of uninitialised value of size 4
+==00:00:00:10.141 31525==    at 0x401C2B0: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.141 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.141 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.141 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:memcpy
+}
+==00:00:00:10.141 31525== Use of uninitialised value of size 4
+==00:00:00:10.141 31525==    at 0x401C1BC: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.141 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.141 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.141 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:memcpy
+}
+==00:00:00:10.141 31525== Use of uninitialised value of size 4
+==00:00:00:10.141 31525==    at 0x401C1C0: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.141 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.141 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.141 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:memcpy
+}
+==00:00:00:10.142 31525== Use of uninitialised value of size 4
+==00:00:00:10.142 31525==    at 0x401C1C4: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.142 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.142 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.142 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:memcpy
+}
+--00:00:00:10.146 31525-- WARNING: Serious error when reading debug info
+--00:00:00:10.146 31525-- When reading debug info from /lib/arm-linux-gnueabihf/librt-2.24.so:
+--00:00:00:10.146 31525-- Ignoring non-Dwarf2/3/4 block in .debug_info
+--00:00:00:10.146 31525-- WARNING: Serious error when reading debug info
+--00:00:00:10.146 31525-- When reading debug info from /lib/arm-linux-gnueabihf/librt-2.24.so:
+--00:00:00:10.146 31525-- Last block truncated in .debug_info; ignoring
+--00:00:00:10.146 31525-- WARNING: Serious error when reading debug info
+--00:00:00:10.146 31525-- When reading debug info from /lib/arm-linux-gnueabihf/librt-2.24.so:
+--00:00:00:10.146 31525-- Overrun whilst reading .debug_ranges section(1)
+==00:00:00:10.167 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:10.168 31525==    at 0x401C158: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.168 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.168 31525==    at 0x401C0F0: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.168 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+--00:00:00:10.184 31525-- WARNING: Serious error when reading debug info
+--00:00:00:10.184 31525-- When reading debug info from /lib/arm-linux-gnueabihf/libm-2.24.so:
+--00:00:00:10.184 31525-- Ignoring non-Dwarf2/3/4 block in .debug_info
+--00:00:00:10.184 31525-- WARNING: Serious error when reading debug info
+--00:00:00:10.184 31525-- When reading debug info from /lib/arm-linux-gnueabihf/libm-2.24.so:
+--00:00:00:10.184 31525-- Last block truncated in .debug_info; ignoring
+--00:00:00:10.184 31525-- WARNING: Serious error when reading debug info
+--00:00:00:10.184 31525-- When reading debug info from /lib/arm-linux-gnueabihf/libm-2.24.so:
+--00:00:00:10.184 31525-- Overrun whilst reading .debug_ranges section(1)
+==00:00:00:10.191 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:10.191 31525==    at 0x401C178: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.191 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.191 31525==    at 0x401C0F0: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.191 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+==00:00:00:10.191 31525== Use of uninitialised value of size 4
+==00:00:00:10.191 31525==    at 0x401C178: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.191 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.192 31525==    at 0x401C0F0: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.192 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:memcpy
+}
+==00:00:00:10.192 31525== Use of uninitialised value of size 4
+==00:00:00:10.192 31525==    at 0x401C1A0: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.192 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.192 31525==    at 0x401C0F0: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.192 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:memcpy
+}
+==00:00:00:10.193 31525== Use of uninitialised value of size 4
+==00:00:00:10.193 31525==    at 0x401C1A4: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.193 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.193 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.193 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:memcpy
+}
+==00:00:00:10.211 31525== Use of uninitialised value of size 4
+==00:00:00:10.211 31525==    at 0x4006604: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.211 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.211 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.211 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:10.215 31525== Use of uninitialised value of size 4
+==00:00:00:10.215 31525==    at 0x40066F4: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.215 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.215 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.215 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:10.217 31525== Use of uninitialised value of size 4
+==00:00:00:10.217 31525==    at 0x4006714: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.217 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.217 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.217 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:10.218 31525== Use of uninitialised value of size 4
+==00:00:00:10.218 31525==    at 0x400672C: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.218 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.218 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.218 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+==00:00:00:10.221 31525== Use of uninitialised value of size 4
+==00:00:00:10.222 31525==    at 0x400673C: _dl_map_object_from_fd (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.222 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.222 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.222 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_from_fd
+}
+--00:00:00:10.263 31525-- WARNING: Serious error when reading debug info
+--00:00:00:10.264 31525-- When reading debug info from /lib/arm-linux-gnueabihf/libc-2.24.so:
+--00:00:00:10.264 31525-- Ignoring non-Dwarf2/3/4 block in .debug_info
+--00:00:00:10.264 31525-- WARNING: Serious error when reading debug info
+--00:00:00:10.264 31525-- When reading debug info from /lib/arm-linux-gnueabihf/libc-2.24.so:
+--00:00:00:10.264 31525-- Last block truncated in .debug_info; ignoring
+--00:00:00:10.264 31525-- WARNING: Serious error when reading debug info
+--00:00:00:10.265 31525-- When reading debug info from /lib/arm-linux-gnueabihf/libc-2.24.so:
+--00:00:00:10.265 31525-- Overrun whilst reading .debug_ranges section(1)
+==00:00:00:10.986 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:10.986 31525==    at 0x400F17C: _dl_map_object_deps (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.986 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.986 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.986 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_dl_map_object_deps
+}
+==00:00:00:10.988 31525== Use of uninitialised value of size 4
+==00:00:00:10.988 31525==    at 0x400F190: _dl_map_object_deps (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.988 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.988 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.988 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:_dl_map_object_deps
+}
+==00:00:00:10.990 31525== Use of uninitialised value of size 4
+==00:00:00:10.990 31525==    at 0x401C17C: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.990 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.990 31525==    at 0x4001AA0: handle_ld_preload (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.990 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   fun:memcpy
+}
+==00:00:00:10.998 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:10.998 31525==    at 0x401C1B8: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.998 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.998 31525==    at 0x401C0F0: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.998 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+==00:00:00:10.998 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:10.999 31525==    at 0x401C1BC: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.999 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.999 31525==    at 0x401C0F0: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.999 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+==00:00:00:10.999 31525== Conditional jump or move depends on uninitialised value(s)
+==00:00:00:10.999 31525==    at 0x401C1C4: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.999 31525==  Uninitialised value was created by a stack allocation
+==00:00:00:10.999 31525==    at 0x401C0F0: memcpy (in /lib/arm-linux-gnueabihf/ld-2.24.so)
+==00:00:00:10.999 31525== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy
+}
+
+: Invalid cuOff = 0x09722
+--00:00:00:15.530 31525-- WARNING: Serious error when reading debug info
+--00:00:00:15.530 31525-- When reading debug info from /lib/arm-linux-gnueabihf/libpthread-2.24.so:
+--00:00:00:15.530 31525-- resolve_variable_types: cuOff does not refer to a known type

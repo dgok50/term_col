@@ -8,7 +8,8 @@ LFLAGS  = -L./iniparser -liniparser
 AR	    = ar
 ARFLAGS = rcv
 RM      = rm -f
-
+VER	= 0.5
+HWVER	= 0.2
 
 default: all
 
@@ -37,6 +38,18 @@ demex: dem_ex.c
 thread: thread.c
 	$(MAKE) -C iniparser
 	$(CC) $(CFLAGS) -o thread thread.c -I./iniparser/src -I./ -L./iniparser -liniparser -lpthread
+
+uart: fork.c
+	$(RM) uart_html
+	$(CC) $(CFLAGS) -o uart_html fork.c -lrt -lm -lwiringPi -lcurl -ggdb
+
+kuip: kuip_t.c
+	$(RM) kuip
+	$(CC) $(CFLAGS) -o kuip kuip_t.c -lrt -lm -lcurl -ggdb -O0
+
+usred: usred_test.c
+	$(RM) usred_test
+	$(CC) $(CFLAGS) -o usred_test usred_test.c -lm -lrt -ggdb
 
 clean:
 	$(MAKE) clean -C iniparser

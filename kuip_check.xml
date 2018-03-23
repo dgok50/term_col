@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results>
+    <error file="dem_ex.c" line="72" id="unusedVariable" severity="style" msg="Unused variable: ErrorAddr"/>
+    <error file="dem_ex.c" line="74" id="unusedVariable" severity="style" msg="Unused variable: x"/>
+    <error file="dem_ex.c" line="75" id="unusedVariable" severity="style" msg="Unused variable: TraceSize"/>
+    <error file="fork.c" line="332" id="invalidPrintfArgType_uint" severity="style" msg="%u in format string (no. 6) requires &apos;unsigned int&apos; but the argument type is &apos;unsigned long&apos;."/>
+    <error file="fork.c" line="123" id="redundantAssignment" severity="style" msg="Variable &apos;uart0_filestream&apos; is reassigned a value before the old one has been used."/>
+    <error file="ups_parse.c" line="65" id="variableScope" severity="style" msg="The scope of the variable &apos;tmp&apos; can be reduced."/>
+    <error file="usred.c" line="78" id="variableScope" severity="style" msg="The scope of the variable &apos;tmp&apos; can be reduced."/>
+    <error file="fork.c" line="111" id="variableScope" severity="style" msg="The scope of the variable &apos;y&apos; can be reduced."/>
+    <error file="fork.c" line="607" id="variableScope" severity="style" msg="The scope of the variable &apos;rx_length&apos; can be reduced."/>
+    <error file="ups_parse.c" line="60" id="unreadVariable" severity="style" msg="Variable &apos;res&apos; is assigned a value that is never used."/>
+    <error file="ups_parse.c" line="62" id="unreadVariable" severity="style" msg="Variable &apos;delim&apos; is assigned a value that is never used."/>
+    <error file="usred.c" line="21" id="unreadVariable" severity="style" msg="Variable &apos;tmp_ind&apos; is assigned a value that is never used."/>
+    <error file="usred.c" line="55" id="unreadVariable" severity="style" msg="Variable &apos;tmp_col&apos; is assigned a value that is never used."/>
+    <error file="fork.c" line="553" id="unusedVariable" severity="style" msg="Unused variable: g"/>
+    <error file="fork.c" line="217" id="usleepCalled" severity="style" msg="Obsolescent function &apos;usleep&apos; called. It is recommended to use &apos;nanosleep&apos; or &apos;setitimer&apos; instead."/>
+    <error file="fork.c" line="225" id="usleepCalled" severity="style" msg="Obsolescent function &apos;usleep&apos; called. It is recommended to use &apos;nanosleep&apos; or &apos;setitimer&apos; instead."/>
+    <error file="fork.c" line="270" id="bzeroCalled" severity="style" msg="Obsolescent function &apos;bzero&apos; called. It is recommended to use &apos;memset&apos; instead."/>
+    <error file="fork.c" line="272" id="bzeroCalled" severity="style" msg="Obsolescent function &apos;bzero&apos; called. It is recommended to use &apos;memset&apos; instead."/>
+    <error file="fork.c" line="273" id="bzeroCalled" severity="style" msg="Obsolescent function &apos;bzero&apos; called. It is recommended to use &apos;memset&apos; instead."/>
+    <error file="fork.c" line="444" id="localtimeCalled" severity="style" msg="Non reentrant function &apos;localtime&apos; called. For threadsafe applications it is recommended to use the reentrant replacement function &apos;localtime_r&apos;."/>
+    <error file="func.c" line="431" id="incorrectLogicOperator" severity="style" msg="Logical conjunction always evaluates to false: type &gt;= 6 &amp;&amp; type &lt;= 0."/>
+
+    <error file="func.c" line="339" id="redundantAssignment" severity="style" msg="Variable &apos;sen_n&apos; is reassigned a value before the old one has been used."/>
+    <error file="func.c" line="204" id="variableScope" severity="style" msg="The scope of the variable &apos;temp&apos; can be reduced."/>
+    <error file="func.c" line="281" id="variableScope" severity="style" msg="The scope of the variable &apos;uart0_filestream&apos; can be reduced."/>
+    <error file="func.c" line="283" id="variableScope" severity="style" msg="The scope of the variable &apos;rx&apos; can be reduced."/>
+    <error file="func.c" line="524" id="variableScope" severity="style" msg="The scope of the variable &apos;com1&apos; can be reduced."/>
+    <error file="func.c" line="747" id="variableScope" severity="style" msg="The scope of the variable &apos;rx_length&apos; can be reduced."/>
+    <error file="func.c" line="24" id="unreadVariable" severity="style" msg="Variable &apos;g&apos; is assigned a value that is never used."/>
+    <error file="func.c" line="100" id="unusedVariable" severity="style" msg="Unused variable: fp"/>
+    <error file="func.c" line="553" id="unusedVariable" severity="style" msg="Unused variable: tempc"/>
+    <error file="func.c" line="553" id="unusedVariable" severity="style" msg="Unused variable: rrdut"/>
+    <error file="func.c" line="555" id="unusedVariable" severity="style" msg="Unused variable: temp"/>
+    <error file="func.c" line="26" id="bzeroCalled" severity="style" msg="Obsolescent function &apos;bzero&apos; called. It is recommended to use &apos;memset&apos; instead."/>
+    <error file="func.c" line="102" id="localtimeCalled" severity="style" msg="Non reentrant function &apos;localtime&apos; called. For threadsafe applications it is recommended to use the reentrant replacement function &apos;localtime_r&apos;."/>
+    <error file="func.c" line="205" id="bzeroCalled" severity="style" msg="Obsolescent function &apos;bzero&apos; called. It is recommended to use &apos;memset&apos; instead."/>
+    <error file="func.c" line="206" id="bzeroCalled" severity="style" msg="Obsolescent function &apos;bzero&apos; called. It is recommended to use &apos;memset&apos; instead."/>
+    <error file="func.c" line="207" id="bzeroCalled" severity="style" msg="Obsolescent function &apos;bzero&apos; called. It is recommended to use &apos;memset&apos; instead."/>
+    <error file="func.c" line="301" id="readdirCalled" severity="style" msg="Non reentrant function &apos;readdir&apos; called. For threadsafe applications it is recommended to use the reentrant replacement function &apos;readdir_r&apos;."/>
+    <error file="func.c" line="333" id="readdirCalled" severity="style" msg="Non reentrant function &apos;readdir&apos; called. For threadsafe applications it is recommended to use the reentrant replacement function &apos;readdir_r&apos;."/>
+    <error file="func.c" line="338" id="readdirCalled" severity="style" msg="Non reentrant function &apos;readdir&apos; called. For threadsafe applications it is recommended to use the reentrant replacement function &apos;readdir_r&apos;."/>
+    <error file="func.c" line="339" id="readdirCalled" severity="style" msg="Non reentrant function &apos;readdir&apos; called. For threadsafe applications it is recommended to use the reentrant replacement function &apos;readdir_r&apos;."/>
+    <error file="func.c" line="345" id="readdirCalled" severity="style" msg="Non reentrant function &apos;readdir&apos; called. For threadsafe applications it is recommended to use the reentrant replacement function &apos;readdir_r&apos;."/>
+    <error file="func.c" line="360" id="bzeroCalled" severity="style" msg="Obsolescent function &apos;bzero&apos; called. It is recommended to use &apos;memset&apos; instead."/>
+    <error file="func.c" line="397" id="bzeroCalled" severity="style" msg="Obsolescent function &apos;bzero&apos; called. It is recommended to use &apos;memset&apos; instead."/>
+    <error file="func.c" line="527" id="bzeroCalled" severity="style" msg="Obsolescent function &apos;bzero&apos; called. It is recommended to use &apos;memset&apos; instead."/>
+    <error file="func.c" line="217" id="invalidscanf" severity="style" msg="scanf() without field width limits can crash with huge input data."/>
+    <error file="func.c" line="496" id="invalidscanf" severity="style" msg="scanf() without field width limits can crash with huge input data."/>
+    <error file="func.c" line="509" id="invalidscanf" severity="style" msg="scanf() without field width limits can crash with huge input data."/>
+    <error file="func.c" line="72" id="deallocDealloc" severity="error" msg="Deallocating a deallocated pointer: F"/>
+    <error file="func.c" line="518" id="memleak" severity="error" msg="Memory leak: sc_sn"/>
+    <error file="func.c" line="518" id="memleak" severity="error" msg="Memory leak: sc_name"/>
+    <error file="func.c" line="518" id="memleak" severity="error" msg="Memory leak: sc_place"/>
+    <error file="func.c" line="518" id="memleak" severity="error" msg="Memory leak: sc_type"/>
+    <error file="func.c" line="404" id="sprintfOverlappingData" severity="error" msg="Undefined behavior: Variable &apos;rrd2&apos; is used as parameter and destination in s[n]printf()."/>
+    <error file="func.c" line="287" id="uninitvar" severity="error" msg="Uninitialized variable: uart0_filestream"/>
+    <error file="kuip_t.c" line="493" id="invalidPrintfArgType_uint" severity="style" msg="%u in format string (no. 6) requires &apos;unsigned int&apos; but the argument type is &apos;unsigned long&apos;."/>
+    <error file="kuip_t.c" line="190" id="variableScope" severity="style" msg="The scope of the variable &apos;y&apos; can be reduced."/>
+    <error file="kuip_t.c" line="190" id="variableScope" severity="style" msg="The scope of the variable &apos;secr&apos; can be reduced."/>
+    <error file="kuip_t.c" line="254" id="variableScope" severity="style" msg="The scope of the variable &apos;unixtime&apos; can be reduced."/>
+    <error file="kuip_t.c" line="287" id="localtimeCalled" severity="style" msg="Non reentrant function &apos;localtime&apos; called. For threadsafe applications it is recommended to use the reentrant replacement function &apos;localtime_r&apos;."/>
+    <error file="term.c" line="187" id="clarifyCondition" severity="style" msg="Boolean result is used in bitwise operation. Clarify expression with parentheses."/>
+    <error file="term.c" line="193" id="clarifyCondition" severity="style" msg="Boolean result is used in bitwise operation. Clarify expression with parentheses."/>
+    <error file="term.c" line="383" id="invalidPrintfArgType_uint" severity="style" msg="%u in format string (no. 1) requires &apos;unsigned int&apos; but the argument type is &apos;unsigned long&apos;."/>
+    <error file="term.c" line="284" id="unreachableCode" severity="style" msg="Statements following return, break, continue, goto or throw will never be executed."/>
+    <error file="term.c" line="64" id="variableScope" severity="style" msg="The scope of the variable &apos;d&apos; can be reduced."/>
+    <error file="term.c" line="108" id="variableScope" severity="style" msg="The scope of the variable &apos;m&apos; can be reduced."/>
+    <error file="term.c" line="252" id="unreadVariable" severity="style" msg="Variable &apos;TermSignal&apos; is assigned a value that is never used."/>
+    <error file="term.c" line="255" id="unreadVariable" severity="style" msg="Variable &apos;IntSignal&apos; is assigned a value that is never used."/>
+    <error file="term.c" line="259" id="unreadVariable" severity="style" msg="Variable &apos;QuitSignal&apos; is assigned a value that is never used."/>
+    <error file="term.c" line="337" id="bufferAccessOutOfBounds" severity="error" msg="Buffer is accessed out of bounds: com3"/>
+    <error file="term.c" line="339" id="bufferAccessOutOfBounds" severity="error" msg="Buffer is accessed out of bounds: com3"/>
+    <error file="term.c" line="113" id="bzeroCalled" severity="style" msg="Obsolescent function &apos;bzero&apos; called. It is recommended to use &apos;memset&apos; instead."/>
+    <error file="term.c" line="118" id="sprintfOverlappingData" severity="error" msg="Undefined behavior: Variable &apos;rrdut&apos; is used as parameter and destination in s[n]printf()."/>
+    <error file="term.c" line="120" id="sprintfOverlappingData" severity="error" msg="Undefined behavior: Variable &apos;rrdut&apos; is used as parameter and destination in s[n]printf()."/>
+    <error file="term_no_den.c" line="35" id="invalidPrintfArgType_sint" severity="style" msg="%d in format string (no. 2) requires &apos;int&apos; but the argument type is &apos;char *&apos;."/>
+    <error file="term_no_den.c" line="35" id="invalidPrintfArgType_sint" severity="style" msg="%d in format string (no. 3) requires &apos;int&apos; but the argument type is &apos;char *&apos;."/>
+    <error file="term_no_den.c" line="35" id="wrongPrintfScanfArgNum" severity="style" msg="printf format string requires 4 parameters but 5 are given."/>
+    <error file="term_no_den.c" line="15" id="unusedVariable" severity="style" msg="Unused variable: df"/>
+    <error file="testf.c" line="13" id="variableScope" severity="style" msg="The scope of the variable &apos;d&apos; can be reduced."/>
+    <error file="thread.c" line="38" id="unreachableCode" severity="style" msg="Statements following return, break, continue, goto or throw will never be executed."/>
+    <error file="thread.c" line="52" id="unreachableCode" severity="style" msg="Statements following return, break, continue, goto or throw will never be executed."/>
+    <error file="thread.c" line="67" id="invalidscanf" severity="style" msg="scanf() without field width limits can crash with huge input data."/>
+    <error file="thread.c" line="71" id="invalidscanf" severity="style" msg="scanf() without field width limits can crash with huge input data."/>
+    <error file="usred_test.c" line="15" id="invalidPrintfArgType_uint" severity="style" msg="%u in format string (no. 1) requires &apos;unsigned int&apos; but the argument type is &apos;unsigned long&apos;."/>
+    <error file="usred_test.c" line="27" id="invalidPrintfArgType_uint" severity="style" msg="%u in format string (no. 3) requires &apos;unsigned int&apos; but the argument type is &apos;unsigned long&apos;."/>
+    <error file="dem_ex.c" line="92" id="unusedFunction" severity="style" msg="The function &apos;SetFdLimit&apos; is never used."/>
+    <error file="a1fl.c" line="99" id="unusedFunction" severity="style" msg="The function &apos;bbzero&apos; is never used."/>
+    <error file="a1fl.c" line="128" id="unusedFunction" severity="style" msg="The function &apos;bfoll&apos; is never used."/>
+    <error file="a1fl.c" line="110" id="unusedFunction" severity="style" msg="The function &apos;dzero&apos; is never used."/>
+    <error file="a1fl.c" line="105" id="unusedFunction" severity="style" msg="The function &apos;fzero&apos; is never used."/>
+    <error file="a1fl.c" line="59" id="unusedFunction" severity="style" msg="The function &apos;get_scsd&apos; is never used."/>
+    <error file="a1fl.c" line="67" id="unusedFunction" severity="style" msg="The function &apos;get_scsf&apos; is never used."/>
+    <error file="a1fl.c" line="75" id="unusedFunction" severity="style" msg="The function &apos;get_scsi&apos; is never used."/>
+    <error file="a1fl.c" line="83" id="unusedFunction" severity="style" msg="The function &apos;get_scsl&apos; is never used."/>
+    <error file="a1fl.c" line="133" id="unusedFunction" severity="style" msg="The function &apos;get_signal_qua&apos; is never used."/>
+    <error file="func.c" line="678" id="unusedFunction" severity="style" msg="The function &apos;init_uart&apos; is never used."/>
+    <error file="a1fl.c" line="122" id="unusedFunction" severity="style" msg="The function &apos;izero&apos; is never used."/>
+    <error file="a1fl.c" line="116" id="unusedFunction" severity="style" msg="The function &apos;lzero&apos; is never used."/>
+    <error file="a1fl.c" line="207" id="unusedFunction" severity="style" msg="The function &apos;splint_narod&apos; is never used."/>
+    <error file="a1fl.c" line="141" id="unusedFunction" severity="style" msg="The function &apos;tobool&apos; is never used."/>
+    <error id="missingIncludeSystem" severity="style" msg="Cppcheck cannot find all the include files (use --check-config for details)"/>
+</results>
