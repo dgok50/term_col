@@ -1,3 +1,3 @@
-killall uart_html
+killall uart
 make uart
 ./uart_html

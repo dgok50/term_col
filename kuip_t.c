@@ -1,3 +1,9 @@
+/*
+    Временный демон для акумулирования и перенаправления данных 2 версия, (fork.c первая)
+    На период разработки основного
+    - Жёстко настроенное количество и характеристики датчиков
+    - Отсутствие многопоточности
+*/
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdlib.h>
@@ -219,7 +225,7 @@ int nodem=1, wait = 0; // Обработчик входных параметро
   int i = 0, rs = RXL;
   
   if(wait == 1) {
-	sleep (120); //Дадим подгрузится системе
+	sleep (60); //Дадим подгрузится системе
   }
   
   rc = get_a1pr_data ("192.168.0.61", rx, RXL);
@@ -593,7 +599,7 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 	  flock (fileno (GIGASET_XML), LOCK_UN);
 	  fclose (GIGASET_XML);
 
-	  if (e_temp > -40 && e_temp < 80 && e_hum > 0 && e_hum < 100)
+	  if (e_temp > -40 && e_temp < 80 && hum > 0 && hum <= 100)
 	    {
 	      NAROD = fopen ("/usr/share/nginx/html/tmp/arduino.txt", "w+");
 	      if (NAROD == NULL)
@@ -638,6 +644,8 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 		}
 	      fprintf (NAROD, "#INTEMP#%f#Темп ГБ\n", e_b_temp);
 	      fprintf (NAROD, "#MCVCC#%f#Напр ВБ1\n", e_mvc);
+	      fprintf (NAROD, "#LPG#%f#Концентрация LPG гор газов\n", e_mq9l);
+	      fprintf (NAROD, "#CO#%f#Концентрация CO\n", e_mq7);
 	      //fprintf (NAROD, "#%s#%f#%u\n", name_mas[i], dat_mas[i], (unsigned)time(NULL));
 	      fprintf (NAROD, "##");
 	      //fseek (NAROD, 0, SEEK_END);
