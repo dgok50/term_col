@@ -6,6 +6,7 @@
 */
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/file.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -297,7 +298,7 @@ int nodem=1, wait = 0; // Обработчик входных параметро
   //rc = rc - 1;
   FILE *HTML, *GIGASET_XML, *XML, *NAROD, *RTF, *RAW;
   init_usred (&sred, 20, 4);
-  init_usred (&sred_main, 20, 12);
+  init_usred (&sred_main, 20, 13);
   init_usred (&sred_sec, 20, 3);
   while (1)
     {
@@ -612,16 +613,17 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 		  syslog (LOG_NOTICE, "arduino.txt file is blocking\n");
 		  exit (EXIT_FAILURE);
 		}
-	      write_usred (&sred_main, 12, &e_temp, &e_hum, &e_lux, &e_mctmp, &e_pre, &e_b_temp, &e_mvc, &e_vin, &e_evc, &e_mq7, &e_mq9, &e_mq9l);
+	      write_usred (&sred_main, 13, &e_temp, &e_hum, &e_lux, &e_mctmp, &e_pre, &e_b_temp, &e_mvc, &e_vin, &e_evc, &e_mq7, &e_mq9, &e_mq9l, &t_temp);
 	      fprintf (NAROD,
-		       "#b8-27-eb-8d-59-05#KUIP#55.7239#37.8174#176\n#TempS#%f#Температура св (DHT21)\n#LUX#%f#Освещённость\n#MCTMP#%f#Темп ВБ1\n",
+		       "#b8-27-eb-8d-59-05#KUIP#55.7241#37.8174#155\n#TempN#%f#Температура св (DHT21)\n#LUX#%f#Освещённость\n#MCTMP#%f#Темп ВБ1\n",
 		       e_temp, e_lux, e_mctmp);
 		  if(secr==1) {
 			  fprintf(NAROD, "#TempS#%f#Температура юг (DHT22)\n", s_temp);
 			  fprintf(NAROD, "#HumS#%f#Влажность юг\n", s_hum);
 		  }
-		  fprintf(NAROD, "#Hum#%f#Влажность\n", hum);
-		  fprintf(NAROD, "#HumE#%f#Влажность св\n", e_hum);
+	      fprintf(NAROD, "#TEMP#%f#Температура\n", t_temp);
+	      fprintf(NAROD, "#Hum#%f#Влажность\n", hum);
+	      fprintf(NAROD, "#HumE#%f#Влажность св\n", e_hum);
 	      fprintf(NAROD, "#PRE#%f#Давление (BMP180)\n", e_pre);
 	      /*if(ups_stat == 0 && sred.data_redy == 1) {
 	         fprintf (NAROD, "#UPSFRQ#%f#Частота сети\n", sred.data_usred[0]);
@@ -631,21 +633,18 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 	         } */
 	      if (ups_stat == 0)
 		{
-		  fprintf (NAROD, "#UPSFRQ#%f#Частота сети\n",
-			   ups_frq);
-		  fprintf (NAROD, "#UPSV#%f#Напряжение сети\n",
-			   ups_v);
-		  fprintf (NAROD,
-			   "#UPSLW#%f#Нагрузка на ИБП 2\n",
-			   ups_load);
-		  fprintf (NAROD,
-			   "#UPSBAT#%f#Заряд батареи ИБП 2\n",
-			   ups_bat_stat);
+		  fprintf (NAROD, "#UPSFRQ#%f#Частота сети\n", ups_frq);
+		  fprintf (NAROD, "#UPSV#%f#Напряжение сети\n", ups_v);
+		  fprintf (NAROD, "#UPSLW#%f#Нагрузка на ИБП 2\n", ups_load);
+		  fprintf (NAROD, "#UPSBAT#%f#Заряд батареи ИБП 2\n", ups_bat_stat);
 		}
-	      fprintf (NAROD, "#INTEMP#%f#Темп ГБ\n", e_b_temp);
+	      fprintf (NAROD, "#INTEMP#%f#Темп ВБ1\n", e_b_temp);
 	      fprintf (NAROD, "#MCVCC#%f#Напр ВБ1\n", e_mvc);
-	      fprintf (NAROD, "#LPG#%f#Концентрация LPG гор газов\n", e_mq9l);
-	      fprintf (NAROD, "#CO#%f#Концентрация CO\n", e_mq7);
+	      if(e_mq9l >= 0)
+	      {
+		fprintf (NAROD, "#LPG#%f#Концентрация LPG гор газов\n", e_mq9l);
+		fprintf (NAROD, "#CO#%f#Концентрация CO\n", e_mq7);
+	      }
 	      //fprintf (NAROD, "#%s#%f#%u\n", name_mas[i], dat_mas[i], (unsigned)time(NULL));
 	      fprintf (NAROD, "##");
 	      //fseek (NAROD, 0, SEEK_END);
@@ -681,6 +680,9 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 	  fprintf (RTF, " Module 5V-3V: %.3fV\\par\n", e_evc);
 	  fprintf (RTF, " Light sensor(BH1750): %.3f Lux\\par\n", e_lux);
 	  fprintf (RTF, " Temp (DHT21): %.3f%cC\\par\n", e_temp, ds);
+	  fprintf (RTF, " Gas CO sensor(MQ7): %.3f ppm\\par\n", e_mq7);
+	  fprintf (RTF, " Gas CO sensor(MQ9): %.3f ppm\\par\n", e_mq9);
+	  fprintf (RTF, " Gas LPG sensor(MQ9): %.3f ppm\\par\n", e_mq9l);
 	  fprintf (RTF, " Humidity (DHT21): %.3f%c\\par\n\\par\n", e_hum, 37);
 	  
 	  if(secr == 1) {
@@ -742,6 +744,9 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 	  fprintf (RTF, " Module VIN-5V: %.3fV\n", e_mvc);
 	  fprintf (RTF, " Module 5V-3V: %.3fV\n", e_evc);
 	  fprintf (RTF, " Light sensor(BH1750): %.3f Lux\n", e_lux);
+	  fprintf (RTF, " Gas CO sensor(MQ7): %.3f ppm\n", e_mq7);
+	  fprintf (RTF, " Gas CO sensor(MQ9): %.3f ppm\n", e_mq9);
+	  fprintf (RTF, " Gas LPG sensor(MQ9): %.3f ppm\n", e_mq9l);
 	  fprintf (RTF, " Temp (DHT21): %.3f%cC\n", e_temp, ds);
 	  fprintf (RTF, " Humidity (DHT21): %.3f%c\n\n", e_hum, 37);
 	  
