@@ -22,7 +22,7 @@
 #define RXL 512
 
 
-const int sw_ver = 81;
+const int sw_ver = 82;
 const int hw_ver = 32;
 
 int stop = 0;
@@ -425,18 +425,19 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 		  e_mq9l = dat_mas[i];
 		  if(e_mq9l >= 300){
 		    if(lpg_warn == 0){
-			sprintf(tst, "echo 'GAS LPG WARNING! VALUE:%f ppm ' | lpr -l -h ", e_mq9l);
+			sprintf(tst, "echo '%d/%d/%d %d:%d:%d GAS LPG WARNING! VALUE:%f ppm ' | lpr -l -h ",Tm->tm_mday, Tm->tm_mon + 1, Tm->tm_year + 1900, Tm->tm_hour, Tm->tm_min, Tm->tm_sec, e_mq9l);
 			system(tst);
-			system("date --rfc-2822 | lpr -l -h ");
+			//system("date --rfc-2822 | lpr -l -h ");
 		    }
 		    lpg_warn=1;
 		  }
 		  else
 		  {
 		    if(lpg_warn == 1){
-			sprintf(tst, "echo 'END GAS LPG WARNING NOW VALUE:%f ppm ' | lpr -l -h ", e_mq9l);
+			//sprintf(tst, "echo 'END GAS LPG WARNING NOW VALUE:%f ppm ' | lpr -l -h ", e_mq9l);
+			sprintf(tst, "echo '%d/%d/%d %d:%d:%d END GAS LPG WARNING NOW VALUE:%f ppm ' | lpr -l -h ",Tm->tm_mday, Tm->tm_mon + 1, Tm->tm_year + 1900, Tm->tm_hour, Tm->tm_min, Tm->tm_sec, e_mq9l);
 			system(tst);
-			system("date --rfc-2822 | lpr -l -h ");
+			//system("date --rfc-2822 | lpr -l -h ");
 		    }
 		    lpg_warn=0;
 		  }
