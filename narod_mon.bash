@@ -46,7 +46,7 @@ exec 3<&-
 exec 3>&-
 sleep 70
 done
-rm -f /usr/share/nginx/www/tmp/arduino.txt
-rm -f /root/narod.pid
+rm -f /usr/share/nginx/html/tmp/arduino.txt
+rm -f /tmp/narod.pid
 echo "Sucsses"
 exit 0;
