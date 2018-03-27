@@ -225,14 +225,29 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 
   int i = 0, rs = RXL;
   
+  syslog (LOG_NOTICE, "pid: %d\n", getpid ());
+  
   if(wait == 1) {
 	sleep (60); //Дадим подгрузится системе
   }
   
-  rc = get_a1pr_data ("192.168.0.61", rx, RXL);
-  src = get_a1pr_data ("192.168.0.89", rx_s, RXL);
-  
-  syslog (LOG_NOTICE, "pid: %d\n", getpid ());
+  for(int errorr=0; errorr < 20; errorr++){
+   rc = get_a1pr_data ("192.168.0.61", rx, RXL);
+   if(rc>=2)
+    {
+     syslog (LOG_NOTICE, "fi mod suc recived\n");
+     break;
+    }
+  }
+
+  for(int errorr=0; errorr < 20; errorr++){
+   src = get_a1pr_data ("192.168.0.89", rx_s, RXL);
+   if(src>=2) {
+     syslog (LOG_NOTICE, "sec mod suc recived\n");
+     break;
+    }
+  }
+
   syslog (LOG_NOTICE, "rc:%d, rx:%s\n", rc, rx);
 
   syslog (LOG_NOTICE, "src:%d, rx_s:%s\n", src, rx_s);
@@ -657,7 +672,11 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 	  fprintf (RTF,
 		   "{\\rtf1\\ansi\\ansicpg1251\\deff0\\deflang1049{\\fonttbl{\\f0\\fnil\\fprq2\\fcharset0 DS-Terminal;}}\n");
 	  fprintf (RTF,
-		   "{\\*\\generator A1Template_base_gen 0.2 ;}\\viewkind4\\uc1\\pard\\qc\\lang1033\\f0\\fs28 KUIP sensor data report\\par\n");
+		    "{\\*\\generator A1Template_base_gen 0.2 ;}{\\title KUIP sensor data report}"
+		    "{\\author KUIP}{\\category Report}{\\doccomm KUIP_Report}"
+		    "{\\creatim\\yr%d\\mo%d\\dy%d\\hr%d\\min%d\\sec%d}"
+                    "\\viewkind4\\uc1\\pard\\qc\\lang1033\\f0\\fs26 KUIP sensor data report\\par\n",
+		     Tm->tm_year + 1900, Tm->tm_mon + 1, Tm->tm_mday, Tm->tm_hour, Tm->tm_min, Tm->tm_sec);
 	  fprintf (RTF, "%d/%d/%d %d:%d:%d\\par\n", Tm->tm_mday,
 		   Tm->tm_mon + 1, Tm->tm_year + 1900, Tm->tm_hour,
 		   Tm->tm_min, Tm->tm_sec);
