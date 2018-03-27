@@ -166,14 +166,19 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 		nodem=0;
 	    }
 	    else if(argv[i][1] == 'b'){ //запустить с задержкой 2 мин
+		char tst[256];
+		sprintf(tst,"echo 'KUIP REPEATER SERVER VER: %d.%d.%d  HW_VER: %d.%d.%d\n' | lpr -l -h ", sw_ver/100, (sw_ver%100)/10, sw_ver%10, hw_ver/100, (hw_ver%100)/10, hw_ver%10);
+		system(tst);
+		system("echo 'BOOT UP AT ' | lpr -l -h ");
+		system("date --rfc-2822 | lpr -l -h ");
 		wait = 1;
 	    }
 	    else if(argv[i][1] == 'v'){ //запустить с задержкой 2 мин
-		printf("KUIP REPITER SERVER V%d.%d.%d\n HW_VER: %d.%d.%d\n", sw_ver/100, (sw_ver%100)/10, sw_ver%10, hw_ver/100, (hw_ver%100)/10, hw_ver%10);
+		printf("KUIP REPEATER SERVER V%d.%d.%d\n HW_VER: %d.%d.%d\n", sw_ver/100, (sw_ver%100)/10, sw_ver%10, hw_ver/100, (hw_ver%100)/10, hw_ver%10);
 		return 0;
 	    }
 	    else if(argv[i][1] == 'h'){ //запустить с задержкой 2 мин
-		printf("KUIP REPITER SERVER V%d.%d.%d\n Параметры:\n  -d Запуск в режиме демона\n  -b Пауза 2 мин перед началом работы сервиса\n  -v Вывести версию и выйти\n",  sw_ver/100, (sw_ver%100)/10, sw_ver%10);
+		printf("KUIP REPEATER SERVER V%d.%d.%d\n Параметры:\n  -d Запуск в режиме демона\n  -b Пауза 2 мин перед началом работы сервиса\n  -v Вывести версию и выйти\n",  sw_ver/100, (sw_ver%100)/10, sw_ver%10);
 		return 0;
 	    }
 	}
@@ -272,6 +277,8 @@ int nodem=1, wait = 0; // Обработчик входных параметро
   double s_evc=0, s_temp=0, s_hum=0, s_fw=0, hum= -100, hi_temp= -100, t_temp= -100;
   double ups_v = -100, ups_load = -100, ups_frq = -100, ups_bat_stat = -100, ups_stat = DSE;
   int tmp_fw = 0;
+  char tst[256];
+  bool lpg_warn = 0;
   char ds = '*';
   //int MSB, LSB, XLSB, timing, DEVICE_ADDRESS;
   //DEVICE_ADDRESS = 0x77;
@@ -353,6 +360,7 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 		write_usred (&sred_sec, 3, &s_temp, &s_hum, &s_evc);
 		break;
 	   }
+	   sleep(1);
 	  }
 	  if (ups_stat == 0)
 	    {
@@ -415,6 +423,23 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 	    else if (strcmp (name_mas[i], "MQ9L") == 0)
 		{
 		  e_mq9l = dat_mas[i];
+		  if(e_mq9l >= 300){
+		    if(lpg_warn == 0){
+			sprintf(tst, "echo 'GAS LPG WARNING! VALUE:%f ppm ' | lpr -l -h ", e_mq9l);
+			system(tst);
+			system("date --rfc-2822 | lpr -l -h ");
+		    }
+		    lpg_warn=1;
+		  }
+		  else
+		  {
+		    if(lpg_warn == 1){
+			sprintf(tst, "echo 'END GAS LPG WARNING NOW VALUE:%f ppm ' | lpr -l -h ", e_mq9l);
+			system(tst);
+			system("date --rfc-2822 | lpr -l -h ");
+		    }
+		    lpg_warn=0;
+		  }
 		}
 	    else if (strcmp (name_mas[i], "FW") == 0)
 		{
