@@ -672,7 +672,9 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 	  fprintf (RTF,
 		   "{\\rtf1\\ansi\\ansicpg1251\\deff0\\deflang1049{\\fonttbl{\\f0\\fnil\\fprq2\\fcharset0 DS-Terminal;}}\n");
 	  fprintf (RTF,
-		    "{\\*\\generator A1Template_base_gen 0.2 ;}{\\title KUIP sensor data report}"
+		    "{\\*\\generator A1Template_base_gen 0.2 ;}"
+		    "{\\*\\template A1Template_kuip_t.c}"
+		    "{\\title KUIP sensor data report}"
 		    "{\\author KUIP}{\\category Report}{\\doccomm KUIP_Report}"
 		    "{\\creatim\\yr%d\\mo%d\\dy%d\\hr%d\\min%d\\sec%d}"
                     "\\viewkind4\\uc1\\pard\\qc\\lang1033\\f0\\fs26 KUIP sensor data report\\par\n",
