@@ -341,7 +341,7 @@ int main(int argc, char *argv[]) {
             //ups_load= -100;
             //ups_frq = -100;
             //ups_bat_stat = -100;
-            ups_stat = get_ups_data(&ups_v, &ups_load, &ups_frq, &ups_bat_stat);
+            ups_stat = get_ups_data("http://192.168.0.114:8000/ups.txt", &ups_v, &ups_load, &ups_frq, &ups_bat_stat);
 
 
             for (int errors = 0; errors < 5; errors++) {

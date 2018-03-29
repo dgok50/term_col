@@ -39,7 +39,7 @@ size_t writefunc (void *ptr, size_t size, size_t nmemb, struct string *s)
   return size * nmemb;
 }
 
-int get_ups_data (double *vin, double *load, double *frqin, double *upsbat)
+int get_ups_data (char *url, double *vin, double *load, double *frqin, double *upsbat)
 {
 
   CURL *curl;
@@ -52,7 +52,7 @@ int get_ups_data (double *vin, double *load, double *frqin, double *upsbat)
       init_string (&s);
 
       curl_easy_setopt (curl, CURLOPT_URL,
-			"http://192.168.0.114:8000/ups.txt");
+			url);
       curl_easy_setopt(curl, CURLOPT_TIMEOUT, 5);
       curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 10);
       curl_easy_setopt (curl, CURLOPT_WRITEFUNCTION, writefunc);
