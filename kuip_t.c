@@ -708,7 +708,7 @@ int main(int argc, char *argv[]) {
             if(cicles_f !=0) {
                 error_rate_f =  (float)errors_f / cicles_f;
             }
-            fprintf(RTF, " Module get error rate: %f\n", error_rate_f);
+            fprintf(RTF, " Module get error: %.0f%c\n", error_rate_f*100, 37);
             //fprintf(RTF, " Module get errors sum: %d\n", errors_f);
             //fprintf(RTF, " Module get cicles: %d\n", cicles_f);
             ds = '*';
@@ -735,7 +735,7 @@ int main(int argc, char *argv[]) {
                 if(cicles_s != 0) {
                     error_rate_s = (float)errors_s / cicles_s;
                 }
-                fprintf(RTF, " Module get error rate: %f\n", error_rate_s);
+                fprintf(RTF, " Module get error: %.0f%c\n", error_rate_s*100, 37);
                 //fprintf(RTF, " Module get errors sum: %d\n", errors_s);
                 //fprintf(RTF, " Module get cicles: %d\n", cicles_s);
                 fprintf(RTF, "\n");
