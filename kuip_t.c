@@ -692,7 +692,7 @@ int main(int argc, char *argv[]) {
             RTF = fopen("/usr/share/nginx/html/tmp/ar_report.txt", "w+");
             fprintf(RTF,
                     "KUIP sensor data report\n");
-            fprintf(RTF, " generate at %d/%d/%d %d:%d:%d\n", Tm->tm_mday,
+            fprintf(RTF, " generate at %d/%d/%d %d:%d:%d\n\n", Tm->tm_mday,
                     Tm->tm_mon + 1, Tm->tm_year + 1900, Tm->tm_hour,
                     Tm->tm_min, Tm->tm_sec);
 
