@@ -709,8 +709,8 @@ int main(int argc, char *argv[]) {
                 error_rate_f =  (float)errors_f / cicles_f;
             }
             fprintf(RTF, " Module get error rate: %f\n", error_rate_f);
-            fprintf(RTF, " Module get errors sum: %d\n", errors_f);
-            fprintf(RTF, " Module get cicles: %d\n", cicles_f);
+            //fprintf(RTF, " Module get errors sum: %d\n", errors_f);
+            //fprintf(RTF, " Module get cicles: %d\n", cicles_f);
             ds = '*';
             fprintf(RTF, "\n");
             fprintf(RTF, " Temp(BMP180): %.3f%cC\n", e_b_temp, ds);
@@ -736,8 +736,8 @@ int main(int argc, char *argv[]) {
                     error_rate_s = (float)errors_s / cicles_s;
                 }
                 fprintf(RTF, " Module get error rate: %f\n", error_rate_s);
-                fprintf(RTF, " Module get errors sum: %d\n", errors_s);
-                fprintf(RTF, " Module get cicles: %d\n", cicles_s);
+                //fprintf(RTF, " Module get errors sum: %d\n", errors_s);
+                //fprintf(RTF, " Module get cicles: %d\n", cicles_s);
                 fprintf(RTF, "\n");
                 fprintf(RTF, " Module VIN-3V: %.3fV\n", s_evc);
                 fprintf(RTF, " Temp (DHT22): %.3f%cC\n", s_temp, ds);
