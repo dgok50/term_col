@@ -15,6 +15,7 @@
 #include <errno.h>
 #include <math.h>
 #include <string.h>
+#include <limits.h>
 #include "ups_parse.c"
 #include "usred.c"
 #include "a1fl.c"
@@ -297,8 +298,9 @@ int nodem=1, wait = 0; // Обработчик входных параметро
   double unixtime = 0, e_hum = -100, e_temp = -100, e_fw=0, e_lux = -100, e_b_temp = DSE;
   double e_mvc = -100, e_evc = DSE, e_pre = DSE, e_mctmp = DSE, e_vin = DSE, e_mq7 = DSE, e_mq9 = DSE, e_mq9l = DSE;
   double s_evc=0, s_temp=0, s_hum=0, s_fw=0, hum= -100, hi_temp= -100, t_temp= -100;
-  double ups_v = -100, ups_load = -100, ups_frq = -100, ups_bat_stat = -100, ups_stat = DSE;
+  double ups_v = -100, ups_load = -100, ups_frq = -100, ups_bat_stat = -100, ups_stat = DSE, error_rate_f=0, error_rate_s=0;
   int tmp_fw = 0;
+  unsigned int errors_f=0, errors_s=0, cicles_f=0, cicles_s=0, error_now_f=0, error_now_s=0;
   char tst[256];
   bool lpg_warn = 0;
   char ds = '*';
@@ -353,7 +355,16 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 	  
     
           for(int errors = 0; errors < 5; errors ++) {
+	    if(cicles_s >= UINT_MAX-2 || errors_s >= UINT_MAX-errors ) {
+		cicles_s=0;
+		errors_s=0;
+	    }
+	   cicles_s++;
 	   if(get_a1pr_data ("192.168.0.89", rx_s, RXL) == src) {  
+
+	    error_now_s=errors;
+	    errors_s+=errors;
+
 	    y = splint_rtoa (rx_s, RXL, src, name_mas_sec, dat_mas_sec);
             //syslog (LOG_NOTICE, "SPLINT_RTOA: y=%d, rs=%d, rc=%d", y, RXL, src);
 	    secr=1;
@@ -673,9 +684,10 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 		   "{\\rtf1\\ansi\\ansicpg1251\\deff0\\deflang1049{\\fonttbl{\\f0\\fnil\\fprq2\\fcharset0 DS-Terminal;}}\n");
 	  fprintf (RTF,
 		    "{\\*\\generator A1Template_base_gen 0.2 ;}"
-		    "{\\*\\template A1Template_kuip_t.c}"
-		    "{\\title KUIP sensor data report}"
-		    "{\\author KUIP}{\\category Report}{\\doccomm KUIP_Report}"
+		    "{\\*\\template kuip_t.c}"
+		    "{\\title KUIP sensor data report}\n"
+		    "{\\author KUIP}{\\category Report}"
+		    "{\\doccomm KUIP_Report}"
 		    "{\\creatim\\yr%d\\mo%d\\dy%d\\hr%d\\min%d\\sec%d}"
                     "\\viewkind4\\uc1\\pard\\qc\\lang1033\\f0\\fs26 KUIP sensor data report\\par\n",
 		     Tm->tm_year + 1900, Tm->tm_mon + 1, Tm->tm_mday, Tm->tm_hour, Tm->tm_min, Tm->tm_sec);
@@ -756,6 +768,11 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 	  fprintf (RTF, " Module type: esp8266, atmega328p-pu(base dev)\n");
 	  tmp_fw = e_fw;
 	  fprintf (RTF, " Module FW ver: %d.%d.%d\n", tmp_fw/100, (tmp_fw%100)/10, tmp_fw%10);
+	  fprintf (RTF, " Module get errors: %d\n", error_now_f);
+	  error_rate_f=cicles_f/errors_f;
+	  fprintf (RTF, " Module get error rate: %f\n", error_rate_f);
+	  fprintf (RTF, " Module get errors sum: %d\n", errors_f);
+	  fprintf (RTF, " Module get cicles: %d\n", cicles_f);
 	  ds = '*';
 	  fprintf (RTF, "\n");
 	  fprintf (RTF, " Temp(BMP180): %.3f%cC\n", e_b_temp, ds);
@@ -776,6 +793,11 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 		fprintf (RTF, " Module type: esp8266(base dev)\n");
 		tmp_fw = s_fw;
 		fprintf (RTF, " Module FW ver: %d.%d.%d\n", tmp_fw/100, (tmp_fw%100)/10, tmp_fw%10);
+		fprintf (RTF, " Module get errors: %d from 5\n", error_now_s);
+		error_rate_s=cicles_s/errors_s;
+		fprintf (RTF, " Module get error rate: %f\n", error_rate_s);
+		fprintf (RTF, " Module get errors sum: %d\n", errors_s);
+		fprintf (RTF, " Module get cicles: %d\n", cicles_s);
 		fprintf (RTF, "\n");
 		fprintf (RTF, " Module VIN-3V: %.3fV\n", s_evc);
 		fprintf (RTF, " Temp (DHT22): %.3f%cC\n", s_temp, ds);
@@ -855,10 +877,22 @@ int nodem=1, wait = 0; // Обработчик входных параметро
 	     }
 	     itc++; */
 	  sleep (15);
+	  error_now_f=0;
 	  //syslog (LOG_NOTICE, "\033[2J"); /* Clear the entire screen. */ 
 	  //syslog (LOG_NOTICE, "\033[0;0f"); /* Move cursor to the top left hand corner*/
 	}
-    }
+	else{
+	    error_now_f++;
+	    errors_f++;
+	}
+
+	if(cicles_f >= UINT_MAX-2 || errors_f >= UINT_MAX-error_now_f ) {
+	    cicles_f=0;
+	    errors_f=0;
+	}
+
+	cicles_f++;
+  }
   //syslog (LOG_NOTICE, "Закрытие uart порта.");
   //close (uart0_filestream);
   //for (i = 0; i < y; i++)

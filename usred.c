@@ -69,7 +69,7 @@ int write_usred (struct usred *sred, int args, ...) //Функция внесе�
       double *data_ptr = va_arg (ap, double *); //Выделение временного указателя
       if(*data_ptr != 0)
 	sred->data[sred->data_index][i] = *data_ptr; //Запись данных в массив для усреднения
-      if (sred->data_redy == 1 && *data_ptr != 0 && *data_ptr < (sred->data_usred[i]*1.5)) //В случае готовности усреднённых данных
+      if (sred->data_redy == 1 && *data_ptr != 0 && *data_ptr < (sred->data_usred[i]*1.5) && *data_ptr > (sred->data_usred[i]*0.5)) //В случае готовности усреднённых данных
         *data_ptr = sred->data_usred[i]; //Вывод их на место входных
     }
   va_end (ap); //Окончание разбора аргументов
