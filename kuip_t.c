@@ -705,7 +705,9 @@ int main(int argc, char *argv[]) {
             tmp_fw = e_fw;
             fprintf(RTF, " Module FW ver: %d.%d.%d\n", tmp_fw / 100, (tmp_fw % 100) / 10, tmp_fw % 10);
             fprintf(RTF, " Module get errors: %d\n", error_now_f);
-//            error_rate_f = cicles_f / errors_f;
+            if(errors_f !=0) {
+                error_rate_f = cicles_f / errors_f;
+            }
             fprintf(RTF, " Module get error rate: %f\n", error_rate_f);
             fprintf(RTF, " Module get errors sum: %d\n", errors_f);
             fprintf(RTF, " Module get cicles: %d\n", cicles_f);
@@ -730,7 +732,9 @@ int main(int argc, char *argv[]) {
                 tmp_fw = s_fw;
                 fprintf(RTF, " Module FW ver: %d.%d.%d\n", tmp_fw / 100, (tmp_fw % 100) / 10, tmp_fw % 10);
                 fprintf(RTF, " Module get errors: %d from 5\n", error_now_s);
-//               error_rate_s = cicles_s / errors_s;
+                if(errors_s != 0) {
+                    error_rate_s = cicles_s / errors_s;
+                }
                 fprintf(RTF, " Module get error rate: %f\n", error_rate_s);
                 fprintf(RTF, " Module get errors sum: %d\n", errors_s);
                 fprintf(RTF, " Module get cicles: %d\n", cicles_s);
