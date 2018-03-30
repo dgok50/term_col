@@ -64,7 +64,7 @@ int get_ups_data (char *url, double *vin, double *load, double *frqin, double *u
       n = 0;
       double tmp;
       while (token = strtok_r (pch, "\n#", &pch))
-	{
+	  {
 	  tmp = atof (token);
 	  //syslog(LOG_NOTICE,"Tmp: %d", tmp);
 	  if (n == 0)
@@ -84,7 +84,7 @@ int get_ups_data (char *url, double *vin, double *load, double *frqin, double *u
 	      *upsbat = tmp + 0;
 	    }
 	  n++;
-	}
+	  }
 
 /*    char * pch;
     fprintf(stderr,"String: %s\n size: %d \n", s.ptr, strlen(s.ptr));
