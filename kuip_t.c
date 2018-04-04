@@ -486,7 +486,7 @@ int main(int argc, char *argv[]) {
                 fprintf(RAW, "ups_frq:%f ups_v:%f ups_load:%f ups_bat_stat:%f HUM:%f TEMP:%f ",
                         ups_frq, ups_v, ups_load, ups_bat_stat, hum, t_temp);
             }
-            fprintf(RAW, "time:%u %s ;", (unsigned) itime, rx);
+            fprintf(RAW, "time:%f %s ;", itime/100000.0, rx);
             //fseek (RAW, 0, SEEK_END);
             flock(fileno(RAW), LOCK_UN);
             fclose(RAW);
