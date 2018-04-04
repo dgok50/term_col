@@ -128,8 +128,8 @@ void skeleton_daemon() {
     if (setsid() < 0)
         exit(EXIT_FAILURE);
 
-    /* Catch, ignore and handle signals */
-    //TODO: Implement a working signal handler */
+    /* Catch and ignore signals */
+    /*TODO: Implement a working signal handler */
     signal(SIGCHLD, SIG_IGN);
     signal(SIGHUP, SIG_IGN);
 
@@ -649,7 +649,7 @@ int main(int argc, char *argv[]) {
             tmp_fw = e_fw;
             ds = '*';
             fprintf(RTF, " Module FW ver: %d.%d.%d\\par\n", tmp_fw / 100, (tmp_fw % 100) / 10, tmp_fw % 10);
-            fprintf(RTF, "\\par\n");
+            //fprintf(RTF, "\\par\n");
             fprintf(RTF, " Temp(BMP180): %.3f%cC\\par\n", e_b_temp, ds);
             fprintf(RTF, " Pressure(BMP180): %.3fmm.Hg.\\par\n", e_pre);
             fprintf(RTF, " Temp (ATmega): %.3f%cC\\par\n", e_mctmp, ds);
@@ -669,7 +669,7 @@ int main(int argc, char *argv[]) {
                 tmp_fw = s_fw;
                 fprintf(RTF, " Module FW ver: %d.%d.%d\\par\n", tmp_fw / 100, (tmp_fw % 100) / 10, tmp_fw % 10);
                 ds = '*';
-                fprintf(RTF, "\\par\n");
+                //fprintf(RTF, "\\par\n");
                 fprintf(RTF, " Module VIN-3V: %.3fV\\par\n", s_evc);
                 fprintf(RTF, " Temp (DHT22): %.3f%cC\\par\n", s_temp, ds);
                 fprintf(RTF, " Humidity (DHT22): %.3f%c\\par\n\\par\n", s_hum, 37);
