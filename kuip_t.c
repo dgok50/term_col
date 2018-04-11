@@ -29,7 +29,7 @@
 #define DSE -100
 #define RXL 512
 
-
+const char* sw_name= "KUIP Repiter";
 const int sw_ver = 83;
 const int hw_ver = 32;
 
@@ -168,7 +168,7 @@ int main(int argc, char *argv[]) {
                     nodem = 0;
                 } else if (argv[i][1] == 'b') { //запустить с задержкой 2 мин
                     char tst[256];
-                    sprintf(tst, "echo 'KUIP REPEATER SERVER VER: %d.%d.%d  HW_VER: %d.%d.%d\n' | lpr -l -h ",
+                    sprintf(tst, "echo '%s SERVER VER: %d.%d.%d  HW_VER: %d.%d.%d\n' | lpr -l -h ", sw_name,
                             sw_ver / 100, (sw_ver % 100) / 10, sw_ver % 10, hw_ver / 100, (hw_ver % 100) / 10,
                             hw_ver % 10);
                     system(tst);
@@ -460,7 +460,7 @@ int main(int argc, char *argv[]) {
                 if (e_temp > s_temp && s_temp != -100) {
                     t_temp = s_temp;
                 }
-                if (e_hum >= 95) {
+                if (e_hum >= 95 || e_hum >= s_hum*1.3 ) {
                     hum = s_hum;
                 }
                 if(cicles_s != 0) {
@@ -631,11 +631,12 @@ int main(int argc, char *argv[]) {
                     "{\\*\\generator A1Template_base_gen 0.2 ;}"
                     "{\\*\\template kuip_t.c}"
                     "{\\title KUIP sensor data report}\n"
-                    "{\\author KUIP}{\\category Report}"
+                    "{\\author %s_%d.%d.%d}{\\category Report}"
                     "{\\doccomm KUIP_Report}"
                     "{\\creatim\\yr%d\\mo%d\\dy%d\\hr%d\\min%d\\sec%d}"
                     "\\viewkind4\\uc1\\pard\\qc\\lang1033\\f0\\fs26 KUIP sensor data report\\par\n",
-                    Tm->tm_year + 1900, Tm->tm_mon + 1, Tm->tm_mday, Tm->tm_hour, Tm->tm_min, Tm->tm_sec);
+                    sw_name, sw_ver / 100, (sw_ver % 100) / 10, sw_ver % 10,
+		    Tm->tm_year + 1900, Tm->tm_mon + 1, Tm->tm_mday, Tm->tm_hour, Tm->tm_min, Tm->tm_sec);
             fprintf(RTF, "%d/%d/%d %d:%d:%d\\par\n", Tm->tm_mday,
                     Tm->tm_mon + 1, Tm->tm_year + 1900, Tm->tm_hour,
                     Tm->tm_min, Tm->tm_sec);
