@@ -456,11 +456,12 @@ int main(int argc, char *argv[]) {
             }
             hum = e_hum;
             t_temp = e_temp;
+	    //TODO!
             if (secr == 1) {
                 if (e_temp > s_temp && s_temp != -100) {
                     t_temp = s_temp;
                 }
-                if (e_hum >= 95 || e_hum >= s_hum*1.3 ) {
+                if (e_hum >= 90 || e_hum >= s_hum*1.3 ) {
                     hum = s_hum;
                 }
                 if(cicles_s != 0) {
