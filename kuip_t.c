@@ -484,9 +484,14 @@ int main(int argc, char *argv[]) {
                 exit(EXIT_FAILURE);
             }
             if (ups_stat == 0) {
-                fprintf(RAW, "ups_frq:%f ups_v:%f ups_load:%f ups_bat_stat:%f HUM:%f TEMP:%f ",
-                        ups_frq, ups_v, ups_load, ups_bat_stat, hum, t_temp);
+                fprintf(RAW, "ups_frq:%f ups_v:%f ups_load:%f ups_bat_stat:%f ",
+                        ups_frq, ups_v, ups_load, ups_bat_stat);
             }
+            if (hum != -100 && t_temp != -100) {
+                fprintf(RAW, "HUM:%f TEMP:%f ",
+                        hum, t_temp);
+            }
+	    
             fprintf(RAW, "time:%f %s ;", itime/100000.0, rx);
             //fseek (RAW, 0, SEEK_END);
             flock(fileno(RAW), LOCK_UN);
