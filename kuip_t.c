@@ -30,13 +30,13 @@
 #define RXL 512
 
 const char* sw_name= "KUIP Repiter";
-const int sw_ver = 83;
+const int sw_ver = 84;
 const int hw_ver = 32;
 
 int stop = 0;
 
 void stop_all();
-
+void usr_sig1();
 void em_dump();
 
 float computeHeatIndex(float temperature, float percentHumidity) {
@@ -44,8 +44,6 @@ float computeHeatIndex(float temperature, float percentHumidity) {
     // http://www.wpc.ncep.noaa.gov/html/heatindex_equation.shtml
     float hi;
 
-    //if (!isFahrenheit)
-    //  temperature = convertCtoF(temperature);
     temperature = temperature * 1.8 + 32;
 
     hi = 0.5 * (temperature + 61.0 + ((temperature - 68.0) * 1.2) + (percentHumidity * 0.094));
@@ -69,7 +67,6 @@ float computeHeatIndex(float temperature, float percentHumidity) {
     }
 
     return (hi - 32) * 0.55555;
-    //return isFahrenheit ? hi : convertFtoC(hi);
 }
 
 int get_a1pr_data(char *host, char *rx, int rxl) {
@@ -200,6 +197,9 @@ int main(int argc, char *argv[]) {
     void (*IntSignal)(int);
     IntSignal = signal(SIGINT, stop_all);
 
+    void (*Usr1Signal)(int);
+    Usr1Signal = signal(SIGUSR1, usr_sig1);
+
     void (*SegvSignal)(int);
     SegvSignal = signal(SIGSEGV, em_dump);
 
@@ -213,7 +213,9 @@ int main(int argc, char *argv[]) {
     float *dat_mas, *dat_mas_sec;
     unsigned char rx[RXL], rx_s[RXL];
     time_t itime;
+    pid_t old_pid;
     struct tm *Tm;
+    FILE *PID;
 
     struct usred sred;
     struct usred sred_sec;
@@ -221,7 +223,34 @@ int main(int argc, char *argv[]) {
 
     int i = 0, rs = RXL;
 
-    syslog(LOG_NOTICE, "pid: %d\n", getpid());
+    PID = fopen ("/tmp/kuip_t.pid", "r");
+    if(PID != NULL){
+     while(fgets(strtmp, sizeof(strtmp), PID)) {
+       old_pid = atoi(strtmp);
+     }
+    fclose(PID);
+     if(old_pid != 0)
+     {
+       kill(old_pid, SIGUSR1);
+       sleep(3);
+       //syslog (LOG_CRIT, "Статус:%d", access("/tmp/kuip_t.here", 0));
+       if(access("/tmp/kuip_t.here", 0) == 0){
+        remove("/tmp/kuip_t.here");
+        syslog (LOG_ERR, "Приложение уже запущено и отвечает, выхожу.");
+        exit(5);
+       }
+       else
+       {
+        kill(old_pid, SIGKILL);
+       }
+       
+     }
+    }
+    syslog (LOG_NOTICE, "pid: %d\n", getpid ());
+    PID = fopen ("/tmp/kuip_t.pid", "w+");
+    fprintf(PID, "%d", getpid());
+    fclose(PID);
+
 
     if (wait == 1) {
         sleep(60); //Дадим подгрузится системе
@@ -230,7 +259,7 @@ int main(int argc, char *argv[]) {
     for (int errorr = 0; errorr < 20; errorr++) {
         rc = get_a1pr_data("192.168.0.61", rx, RXL);
         if (rc >= 2) {
-            syslog(LOG_NOTICE, "fi mod suc recived\n");
+            syslog(LOG_NOTICE, "Полученны данные от 1 модуля\n");
             break;
         }
     }
@@ -238,7 +267,7 @@ int main(int argc, char *argv[]) {
     for (int errorr = 0; errorr < 20; errorr++) {
         src = get_a1pr_data("192.168.0.89", rx_s, RXL);
         if (src >= 2) {
-            syslog(LOG_NOTICE, "sec mod suc recived\n");
+            syslog(LOG_NOTICE, "Полученны данные от 2 модуля\n");
             break;
         }
     }
@@ -862,6 +891,8 @@ int main(int argc, char *argv[]) {
 
 void stop_all() {
     if (stop == 1) {
+        remove("/tmp/kuip_t.here");
+        remove("/tmp/kuip_t.pid");
         syslog(LOG_CRIT, "Пробую завершится аварийно...");
         exit(10);
     }
@@ -872,5 +903,15 @@ void stop_all() {
 
 void em_dump() {
     syslog(LOG_CRIT, "Ошибка сегментирования, завершаю аварийно...");
+    remove("/tmp/kuip_t.here");
+    
     exit(20);
+}
+
+void usr_sig1() {
+    FILE *TEMPF;
+    syslog(LOG_NOTICE, "Получен сигнал SIGUSR1, отвечаю.");
+    TEMPF = fopen("/tmp/kuip_t.here", "w+");
+    if(TEMPF != NULL) fprintf(TEMPF, "%d", sizeof(int));
+    fclose(TEMPF);
 }
