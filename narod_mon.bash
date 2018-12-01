@@ -23,6 +23,9 @@ DATA="$(cat /usr/share/nginx/html/tmp/arduino.txt)"
 if [ ! -f /usr/share/nginx/html/tmp/arduino.txt ]; then
     exit 1;
 fi
+
+i=0
+
 while [ "$MSG_IN" != "OK" ]
 do
 sleep 2
@@ -44,7 +47,8 @@ echo "$MSG_IN"
 # закрываем соединение
 exec 3<&-
 exec 3>&-
-sleep 70
+sleep 20
+let "i++"
 done
 rm -f /usr/share/nginx/html/tmp/arduino.txt
 rm -f /tmp/narod.pid
