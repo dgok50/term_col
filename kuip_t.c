@@ -594,7 +594,7 @@ int main(int argc, char *argv[]) {
                 write_usred(&sred_main, 13, &e_temp, &e_hum, &e_lux, &e_mctmp, &e_pre, &e_b_temp, &e_mvc, &e_vin,
                             &e_evc, &e_mq7, &e_mq9, &e_mq9l, &t_temp);
                 fprintf(NAROD,
-                        "#b8-27-eb-8d-59-05#KUIP#55.7241#37.8174#155\n#TempN#%f#Температура св (DHT21)\n#LUX#%f#Освещённость\n#MCTMP#%f#Темп ВБ1\n",
+                        "#b8-27-eb-8d-59-05#KUIP#55.7241#37.8174#155\n#TempN#%f#Температура св (DHT21)\n#LUX#%f#Освещённость\n#MCTMP#%f#Темп ВБ1 МК\n",
                         e_temp, e_lux, e_mctmp);
                 if (secr == 1) {
                     fprintf(NAROD, "#TempS#%f#Температура юг (DHT22)\n", s_temp);
@@ -617,7 +617,7 @@ int main(int argc, char *argv[]) {
                     fprintf(NAROD, "#UPSBAT#%f#Заряд батареи ИБП 2\n", ups_bat_stat);
                 }
                 fprintf(NAROD, "#INTEMP#%f#Темп ВБ1\n", e_b_temp);
-                fprintf(NAROD, "#MCVCC#%f#Напр ВБ1\n", e_mvc);
+                fprintf(NAROD, "#MCVCC#%f#Напр ВБ1 МК\n", e_mvc);
                 if (e_mq9l >= 0) {
                     fprintf(NAROD, "#LPG#%f#Концентрация LPG гор газов\n", e_mq9l);
                     fprintf(NAROD, "#CO#%f#Концентрация CO\n", e_mq7);
