@@ -904,7 +904,8 @@ void stop_all() {
 void em_dump() {
     syslog(LOG_CRIT, "Ошибка сегментирования, завершаю аварийно...");
     remove("/tmp/kuip_t.here");
-    
+    system("echo 'SEGFAIL AT ' | lpr -l -h ");
+    system("date --rfc-2822 | lpr -l -h ");
     exit(20);
 }
 
