@@ -29,14 +29,16 @@
 #define DSE -100
 #define RXL 512
 
-const char* sw_name= "KUIP Repiter";
+const char *sw_name = "KUIP Repiter";
 const int sw_ver = 84;
 const int hw_ver = 32;
 
 int stop = 0;
 
 void stop_all();
+
 void usr_sig1();
+
 void em_dump();
 
 float computeHeatIndex(float temperature, float percentHumidity) {
@@ -223,31 +225,28 @@ int main(int argc, char *argv[]) {
 
     int i = 0, rs = RXL;
 
-    PID = fopen ("/tmp/kuip_t.pid", "r");
-    if(PID != NULL){
-     while(fgets(strtmp, sizeof(strtmp), PID)) {
-       old_pid = atoi(strtmp);
-     }
-    fclose(PID);
-     if(old_pid != 0)
-     {
-       kill(old_pid, SIGUSR1);
-       sleep(3);
-       //syslog (LOG_CRIT, "Статус:%d", access("/tmp/kuip_t.here", 0));
-       if(access("/tmp/kuip_t.here", 0) == 0){
-        remove("/tmp/kuip_t.here");
-        syslog (LOG_ERR, "Приложение уже запущено и отвечает, выхожу.");
-        exit(5);
-       }
-       else
-       {
-        kill(old_pid, SIGKILL);
-       }
-       
-     }
+    PID = fopen("/tmp/kuip_t.pid", "r");
+    if (PID != NULL) {
+        while (fgets(strtmp, sizeof(strtmp), PID)) {
+            old_pid = atoi(strtmp);
+        }
+        fclose(PID);
+        if (old_pid != 0) {
+            kill(old_pid, SIGUSR1);
+            sleep(3);
+            //syslog (LOG_CRIT, "Статус:%d", access("/tmp/kuip_t.here", 0));
+            if (access("/tmp/kuip_t.here", 0) == 0) {
+                remove("/tmp/kuip_t.here");
+                syslog(LOG_ERR, "Приложение уже запущено и отвечает, выхожу.");
+                exit(5);
+            } else {
+                kill(old_pid, SIGKILL);
+            }
+
+        }
     }
-    syslog (LOG_NOTICE, "pid: %d\n", getpid ());
-    PID = fopen ("/tmp/kuip_t.pid", "w+");
+    syslog(LOG_NOTICE, "pid: %d\n", getpid());
+    PID = fopen("/tmp/kuip_t.pid", "w+");
     fprintf(PID, "%d", getpid());
     fclose(PID);
 
@@ -485,22 +484,22 @@ int main(int argc, char *argv[]) {
             }
             hum = e_hum;
             t_temp = e_temp;
-	    //TODO!
+            //TODO!
             if (secr == 1) {
                 if (e_temp > s_temp && s_temp != -100) {
                     t_temp = s_temp;
                 }
-                if (e_hum >= 90 || e_hum >= s_hum*1.3 ) {
+                if (e_hum >= 90 || e_hum >= s_hum * 1.3) {
                     hum = s_hum;
                 }
-                if(cicles_s != 0) {
-                    error_rate_s = (float)errors_s / cicles_s;
+                if (cicles_s != 0) {
+                    error_rate_s = (float) errors_s / cicles_s;
                 }
 
             }
             hi_temp = computeHeatIndex(t_temp, hum);
-            if(cicles_f !=0) {
-                error_rate_f =  (float)errors_f / cicles_f;
+            if (cicles_f != 0) {
+                error_rate_f = (float) errors_f / cicles_f;
             }
 
             RAW = fopen("/usr/share/nginx/html/tmp/arduino_raw.txt", "w+");
@@ -520,8 +519,8 @@ int main(int argc, char *argv[]) {
                 fprintf(RAW, "HUM:%f TEMP:%f ",
                         hum, t_temp);
             }
-	    
-            fprintf(RAW, "time:%f %s ;", itime/100000.0, rx);
+
+            fprintf(RAW, "time:%f %s ;", itime / 100000.0, rx);
             //fseek (RAW, 0, SEEK_END);
             flock(fileno(RAW), LOCK_UN);
             fclose(RAW);
@@ -671,7 +670,7 @@ int main(int argc, char *argv[]) {
                     "{\\creatim\\yr%d\\mo%d\\dy%d\\hr%d\\min%d\\sec%d}"
                     "\\viewkind4\\uc1\\pard\\qc\\lang1033\\f0\\fs26 KUIP sensor data report\\par\n",
                     sw_name, sw_ver / 100, (sw_ver % 100) / 10, sw_ver % 10,
-		    Tm->tm_year + 1900, Tm->tm_mon + 1, Tm->tm_mday, Tm->tm_hour, Tm->tm_min, Tm->tm_sec);
+                    Tm->tm_year + 1900, Tm->tm_mon + 1, Tm->tm_mday, Tm->tm_hour, Tm->tm_min, Tm->tm_sec);
             fprintf(RTF, "%d/%d/%d %d:%d:%d\\par\n", Tm->tm_mday,
                     Tm->tm_mon + 1, Tm->tm_year + 1900, Tm->tm_hour,
                     Tm->tm_min, Tm->tm_sec);
@@ -716,7 +715,7 @@ int main(int argc, char *argv[]) {
                         "Com server UPS:\\par\n Line Frequency: %.2fHz\\par\n",
                         ups_frq);
                 fprintf(RTF, " Line Voltage: %.2fV\\par\n", ups_v);
-                fprintf(RTF, " Load: %f%c\\par\n",  ups_load, 37);
+                fprintf(RTF, " Load: %f%c\\par\n", ups_load, 37);
                 fprintf(RTF, " Power cons: %.3fW\\par\n", ups_load);
                 fprintf(RTF, " Bat charge: %.2f%c\\par\n\\par\n", ups_bat_stat,
                         37);
@@ -749,7 +748,7 @@ int main(int argc, char *argv[]) {
             tmp_fw = e_fw;
             fprintf(RTF, " Module FW ver: %d.%d.%d\n", tmp_fw / 100, (tmp_fw % 100) / 10, tmp_fw % 10);
             //fprintf(RTF, " Module get errors: %d\n", error_now_f);
-            fprintf(RTF, " Module get error: %.0f%c\n", error_rate_f*100, 37);
+            fprintf(RTF, " Module get error: %.0f%c\n", error_rate_f * 100, 37);
             //fprintf(RTF, " Module get errors sum: %d\n", errors_f);
             //fprintf(RTF, " Module get cicles: %d\n", cicles_f);
             ds = '*';
@@ -773,7 +772,7 @@ int main(int argc, char *argv[]) {
                 tmp_fw = s_fw;
                 fprintf(RTF, " Module FW ver: %d.%d.%d\n", tmp_fw / 100, (tmp_fw % 100) / 10, tmp_fw % 10);
                 //fprintf(RTF, " Module get errors: %d from 5\n", error_now_s);
-                fprintf(RTF, " Module get error: %.0f%c\n", error_rate_s*100, 37);
+                fprintf(RTF, " Module get error: %.0f%c\n", error_rate_s * 100, 37);
                 //fprintf(RTF, " Module get errors sum: %d\n", errors_s);
                 //fprintf(RTF, " Module get cicles: %d\n", cicles_s);
                 fprintf(RTF, "\n");
@@ -787,7 +786,7 @@ int main(int argc, char *argv[]) {
                         "Com server UPS:\n Line Frequency: %.2fHz\n",
                         ups_frq);
                 fprintf(RTF, " Line Voltage: %.2fV\n", ups_v);
-                fprintf(RTF, " Load: %f%c\n",  ups_load, 37);
+                fprintf(RTF, " Load: %f%c\n", ups_load, 37);
                 fprintf(RTF, " Power cons: %.3fW\n", ups_load);
                 fprintf(RTF, " Bat charge: %.2f%c\n\n", ups_bat_stat,
                         37);
@@ -913,6 +912,6 @@ void usr_sig1() {
     FILE *TEMPF;
     syslog(LOG_NOTICE, "Получен сигнал SIGUSR1, отвечаю.");
     TEMPF = fopen("/tmp/kuip_t.here", "w+");
-    if(TEMPF != NULL) fprintf(TEMPF, "%d", sizeof(int));
+    if (TEMPF != NULL) fprintf(TEMPF, "%d", sizeof(int));
     fclose(TEMPF);
 }
