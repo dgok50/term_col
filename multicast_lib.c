@@ -24,7 +24,7 @@ int send_multicast(char *broadcast_addr, int *port_addr, char *message)
    addr.sin_family = AF_INET;
    addr.sin_addr.s_addr = htonl(INADDR_ANY);
    //addr.sin_port = htons(EXAMPLE_PORT);
-   addr.sin_port = htons(port_addr);
+   addr.sin_port = htons(&port_addr);
    addrlen = sizeof(addr);
    /* send */
    addr.sin_addr.s_addr = inet_addr(broadcast_addr);
