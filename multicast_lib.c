@@ -6,7 +6,7 @@
 #include <unistd.h> 
 #include <stdlib.h>
 
-int send_multicast(char *broadcast_addr, int port_addr, char *message)
+int send_multicast(char *broadcast_addr, int *port_addr, char *message)
 //int init_sock()
 {
    //char message[] = "retyergtr";
