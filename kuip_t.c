@@ -537,7 +537,7 @@ int main(int argc, char *argv[]) {
             
             sprintf(raw_message, "%stime:%f %s ;", raw_message, itime / 100000.0, rx);
             fprintf(RAW, "time:%f %s ;", itime / 100000.0, rx);
-            send_multicast("239.243.42.19", htons(4219), raw_message);
+            send_multicast("239.243.42.19", htons(6219), raw_message);
             //fseek (RAW, 0, SEEK_END);
             flock(fileno(RAW), LOCK_UN);
             fclose(RAW);
