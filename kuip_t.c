@@ -19,6 +19,14 @@
 #include "ups_parse.c"
 #include "usred.c"
 #include "a1fl.c"
+
+/*Сетевая часть*/
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include "multicast_lib.c"
+
 //#include <wiringPiI2C.h>	//Used for I2C
 #include <unistd.h>        //Used for UART
 #include <fcntl.h>        //Used for UART
@@ -211,7 +219,7 @@ int main(int argc, char *argv[]) {
 
     int rc = 0, y = 0, c = 0, itc = 0, src = 0, secr = 0;
     char **name_mas, **name_mas_sec;
-    char typec[10], strtmp[100];
+    char typec[10], strtmp[100], raw_message[buffer_size];
     float *dat_mas, *dat_mas_sec;
     unsigned char rx[RXL], rx_s[RXL];
     time_t itime;
@@ -502,6 +510,9 @@ int main(int argc, char *argv[]) {
                 error_rate_f = (float) errors_f / cicles_f;
             }
 
+
+	    /*Raw data output*/
+	    bzero(raw_message, buffer_size);
             RAW = fopen("/usr/share/nginx/html/tmp/arduino_raw.txt", "w+");
             if (RAW == NULL) {
                 syslog(LOG_WARNING, "Cannot Open arduino_raw.txt\n");
@@ -514,13 +525,19 @@ int main(int argc, char *argv[]) {
             if (ups_stat == 0) {
                 fprintf(RAW, "ups_frq:%f ups_v:%f ups_load:%f ups_bat_stat:%f ",
                         ups_frq, ups_v, ups_load, ups_bat_stat);
+                sprintf(raw_message, "ups_frq:%f ups_v:%f ups_load:%f ups_bat_stat:%f ",
+                        ups_frq, ups_v, ups_load, ups_bat_stat);
             }
             if (hum != -100 && t_temp != -100) {
+                sprintf(raw_message, "%sHUM:%f TEMP:%f ", raw_message,
+                        hum, t_temp);
                 fprintf(RAW, "HUM:%f TEMP:%f ",
                         hum, t_temp);
             }
-
+            
+            sprintf(raw_message, "%stime:%f %s ;", raw_message, itime / 100000.0, rx);
             fprintf(RAW, "time:%f %s ;", itime / 100000.0, rx);
+            send_multicast("239.243.42.19", htons(4219), raw_message);
             //fseek (RAW, 0, SEEK_END);
             flock(fileno(RAW), LOCK_UN);
             fclose(RAW);
