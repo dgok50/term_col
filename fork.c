@@ -108,14 +108,14 @@ int main ()
 
   QuitSignal = signal (SIGQUIT, stop_all);
 
-  int rc = 0, y = 0, c = 0, itc = 0;
+  int rc = 0, y = 0, c = 0, itc = 0, pid = 0;
   char **name_mas;
-  char typec[10], strtmp[100];
+  char typec[10], strtmp[100], temp[10];
   double *dat_mas;
   unsigned char rx[256];
   time_t itime;
   struct tm *Tm;
-
+  FILE *PID;
   struct usred sred;
   struct usred sred_main;
 
@@ -137,7 +137,19 @@ int main ()
   tcflush (uart0_filestream, TCIFLUSH);
   tcsetattr (uart0_filestream, TCSANOW, &options);
   rc = readDA (uart0_filestream, rx);
+  PID = fopen ("/tmp/uart.pid", "r");
+  while(fget(temp, sizeof(temp), PID)){
+    pid = atoi(temp);
+  }
+  if(pid != 0)
+  {
+    kill(pid, SIGKILL);
+  }
+  fclose(PID);
   syslog (LOG_NOTICE, "pid: %d\n", getpid ());
+  PID = fopen ("/tmp/uart.pid", "w+");
+  fprintf(PID, "%d", getpid());
+  fclose(PID);
   syslog (LOG_NOTICE, "rc:%d, rx:%s\n", rc, rx);
 
   syslog (LOG_NOTICE, "получено переменных:%d\n", rc);

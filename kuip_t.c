@@ -38,6 +38,8 @@
 #define RXL 512
 
 const char *sw_name = "KUIP Repiter";
+const int b_port = 6219;
+const char *b_ip = "239.243.42.19";
 const int sw_ver = 84;
 const int hw_ver = 32;
 
@@ -327,7 +329,7 @@ int main(int argc, char *argv[]) {
     double e_mvc = -100, e_evc = DSE, e_pre = DSE, e_mctmp = DSE, e_vin = DSE, e_mq7 = DSE, e_mq9 = DSE, e_mq9l = DSE;
     double s_evc = 0, s_temp = 0, s_hum = 0, s_fw = 0, hum = -100, hi_temp = -100, t_temp = -100;
     double ups_v = -100, ups_load = -100, ups_frq = -100, ups_bat_stat = -100, ups_stat = DSE, error_rate_f = 0, error_rate_s = 0;
-    int tmp_fw = 0;
+    int tmp_fw = 0, sock = -1;
     unsigned int errors_f = 0, errors_s = 0, cicles_f = 0, cicles_s = 0, error_now_f = 0, error_now_s = 0;
     char tst[256];
     bool lpg_warn = 0;
@@ -352,7 +354,10 @@ int main(int argc, char *argv[]) {
         //syslog (LOG_NOTICE, "srec: %s\n", rx_s);
         //syslog (LOG_NOTICE, "scol: %d\n", src);
         if (stop == 1)
+	{
+	    close(sock);
             break;
+	}
         secr = 0;
         //if (readDA (uart0_filestream, rx) == rc)
         if (get_a1pr_data("192.168.0.61", rx, RXL) == rc) {
@@ -537,7 +542,7 @@ int main(int argc, char *argv[]) {
             
             sprintf(raw_message, "%stime:%f %s ;", raw_message, itime / 100000.0, rx);
             fprintf(RAW, "time:%f %s ;", itime / 100000.0, rx);
-            send_multicast("239.243.42.19", 6219, raw_message);
+            send_multicast(sock, b_ip, b_port, raw_message);
             //fseek (RAW, 0, SEEK_END);
             flock(fileno(RAW), LOCK_UN);
             fclose(RAW);
@@ -926,6 +931,11 @@ void em_dump() {
 }
 
 void usr_sig1() {
+    if(stop == 1) {
+        remove("/tmp/kuip_t.here");
+        remove("/tmp/kuip_t.pid");
+	return;
+    }
     FILE *TEMPF;
     syslog(LOG_NOTICE, "Получен сигнал SIGUSR1, отвечаю.");
     TEMPF = fopen("/tmp/kuip_t.here", "w+");

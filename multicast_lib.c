@@ -6,31 +6,33 @@
 #include <unistd.h> 
 #include <stdlib.h>
 
-int send_multicast(char *broadcast_addr, int *port_addr, char *message)
+int send_multicast(int *sock, char *broadcast_addr, int *port_addr, char *message)
 //int init_sock()
 {
    //char message[] = "retyergtr";
    struct sockaddr_in addr;
-   int addrlen, sock, cnt, mes_size=strlen(message)*sizeof(char)+2; //Исправить говнокод
+   int addrlen, cnt, mes_size=strlen(message)*sizeof(char)+2; //Исправить говнокод
    struct ip_mreq mreq;
    //char message_raw[sizeof(message)+2];
    char message_raw[mes_size];
    /* set up socket */
-   sock = socket(AF_INET, SOCK_DGRAM, 0);
-   if (sock < 0) {
-	 return -1;
+   if(sock >= 0){
+    sock = socket(AF_INET, SOCK_DGRAM, 0);
+    if (sock < 0) {
+ 	 return -1;
+    }
    }
    bzero((char *)&addr, sizeof(addr));
    addr.sin_family = AF_INET;
    addr.sin_addr.s_addr = htonl(INADDR_ANY);
    //addr.sin_port = htons(EXAMPLE_PORT);
-   addr.sin_port = htons(&port_addr);
+   addr.sin_port = htons(port_addr);
    addrlen = sizeof(addr);
    /* send */
    addr.sin_addr.s_addr = inet_addr(broadcast_addr);
    //addr.sin_addr.s_addr = inet_addr(EXAMPLE_GROUP);
    //printf("sock:%d\n", sock);
-   while (1) {
+   //while (1) {
 	 sprintf(message_raw, "%c%s%c",25,message,01);
 	 //printf("size %d, sending: %s\n", mes_size, message_raw);
 	 cnt = sendto(sock, message_raw, mes_size, 0, (struct sockaddr *) &addr, addrlen);
@@ -39,8 +41,9 @@ int send_multicast(char *broadcast_addr, int *port_addr, char *message)
 		//perror("sendto1");
 		return -2;
 	 }
-	 sleep(5);
-	 }
+	 //sleep(5);
+	 //}
+ //close(sock);
  return 0;
 }
 /*
