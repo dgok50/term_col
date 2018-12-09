@@ -542,7 +542,7 @@ int main(int argc, char *argv[]) {
             
             sprintf(raw_message, "%stime:%f %s ;", raw_message, itime / 100000.0, rx);
             fprintf(RAW, "time:%f %s ;", itime / 100000.0, rx);
-            int c = send_multicast(sock, b_ip, b_port, raw_message);
+            int c = send_multicast(b_ip, b_port, raw_message);
 	    if(c < 0)
 		syslog(LOG_ERR, "Ошибка отправки данных мультикаст %d\n", c);
             //fseek (RAW, 0, SEEK_END);
