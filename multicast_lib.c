@@ -6,9 +6,10 @@
 #include <unistd.h> 
 #include <stdlib.h>
 
-int send_multicast(int *sock, char *broadcast_addr, int *port_addr, char *message)
+int send_multicast(char *broadcast_addr, int *port_addr, char *message)
 //int init_sock()
 {
+   int sock = -1;
    //char message[] = "retyergtr";
    struct sockaddr_in addr;
    int addrlen, cnt, mes_size=strlen(message)*sizeof(char)+2; //Исправить говнокод
@@ -16,7 +17,7 @@ int send_multicast(int *sock, char *broadcast_addr, int *port_addr, char *messag
    //char message_raw[sizeof(message)+2];
    char message_raw[mes_size];
    /* set up socket */
-   if(sock >= 0){
+   if(sock <= 0){
     sock = socket(AF_INET, SOCK_DGRAM, 0);
     if (sock < 0) {
  	 return -1;
