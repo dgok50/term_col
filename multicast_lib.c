@@ -12,7 +12,7 @@ int send_multicast(char *broadcast_addr, int *port_addr, char *message)
    int sock = -1;
    //char message[] = "retyergtr";
    struct sockaddr_in addr;
-   int addrlen, cnt, mes_size=strlen(message)*sizeof(char)+2; //Исправить говнокод
+   int addrlen, cnt, mes_size=strlen(message)*sizeof(char)+2, optval = 1; //Исправить говнокод
    struct ip_mreq mreq;
    //char message_raw[sizeof(message)+2];
    char message_raw[mes_size];
