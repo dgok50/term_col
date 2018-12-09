@@ -169,12 +169,14 @@ void skeleton_daemon() {
 }
 
 int main(int argc, char *argv[]) {
-    int nodem = 1, wait = 0; // Обработчик входных параметров
+    int nodem = 1, wait = 0, killifrun = 0; // Обработчик входных параметров
     if (argc > 1) {
         for (int i = 0; i < argc; i++) {
             if (argv[i][0] == '-') {
                 if (argv[i][1] == 'd') { //Запустить как демон
                     nodem = 0;
+                } else if (argv[i][1] == 'k') { //
+                    killifrun = 1;
                 } else if (argv[i][1] == 'b') { //запустить с задержкой 2 мин
                     char tst[256];
                     sprintf(tst, "echo '%s SERVER VER: %d.%d.%d  HW_VER: %d.%d.%d\n' | lpr -l -h ", sw_name,
@@ -184,12 +186,12 @@ int main(int argc, char *argv[]) {
                     system("echo 'BOOT UP AT ' | lpr -l -h ");
                     system("date --rfc-2822 | lpr -l -h ");
                     wait = 1;
-                } else if (argv[i][1] == 'v') { //запустить с задержкой 2 мин
+                } else if (argv[i][1] == 'v') {
                     printf("KUIP REPEATER SERVER V%d.%d.%d\n HW_VER: %d.%d.%d\n", sw_ver / 100, (sw_ver % 100) / 10,
                            sw_ver % 10, hw_ver / 100, (hw_ver % 100) / 10, hw_ver % 10);
                     return 0;
-                } else if (argv[i][1] == 'h') { //запустить с задержкой 2 мин
-                    printf("KUIP REPEATER SERVER V%d.%d.%d\n Параметры:\n  -d Запуск в режиме демона\n  -b Пауза 2 мин перед началом работы сервиса\n  -v Вывести версию и выйти\n",
+                } else if (argv[i][1] == 'h') {
+                    printf("KUIP REPEATER SERVER V%d.%d.%d\n Параметры:\n  -d Запуск в режиме демона\n  -b Пауза 2 мин перед началом работы сервиса\n  -k Убить процесс если он уже запущен\n  -v Вывести версию и выйти\n",
                            sw_ver / 100, (sw_ver % 100) / 10, sw_ver % 10);
                     return 0;
                 }
@@ -245,7 +247,12 @@ int main(int argc, char *argv[]) {
             kill(old_pid, SIGUSR1);
             sleep(3);
             //syslog (LOG_CRIT, "Статус:%d", access("/tmp/kuip_t.here", 0));
-            if (access("/tmp/kuip_t.here", 0) == 0) {
+            if (killifrun == 1) {
+        	syslog(LOG_NOTICE, "Получен сигнал принудительного перезапуска.\n");
+        	syslog(LOG_NOTICE, "Убиваю %d и выхожу.\n", old_pid);
+        	kill(old_pid, SIGKILL);
+            }
+            if (access("/tmp/kuip_t.here", 0) == 0 && killifrun == 0) {
                 remove("/tmp/kuip_t.here");
                 syslog(LOG_ERR, "Приложение уже запущено и отвечает, выхожу.");
                 exit(5);

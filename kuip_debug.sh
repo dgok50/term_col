@@ -2,4 +2,4 @@ killall kuip
 git pull
 sleep 5
 make kuip
-./kuip -d -k
+strace ./kuip -k

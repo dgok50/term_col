@@ -12,7 +12,7 @@ int send_multicast(char *broadcast_addr, int *port_addr, char *message)
    int sock = -1;
    //char message[] = "retyergtr";
    struct sockaddr_in addr;
-   int addrlen, cnt, mes_size=strlen(message)*sizeof(char)+2; //Исправить говнокод
+   int addrlen, cnt, mes_size=strlen(message)*sizeof(char)+2, optval = 1; //Исправить говнокод
    struct ip_mreq mreq;
    //char message_raw[sizeof(message)+2];
    char message_raw[mes_size];
@@ -39,7 +39,7 @@ int send_multicast(char *broadcast_addr, int *port_addr, char *message)
    //while (1) {
 	 sprintf(message_raw, "%c%s%c",25,message,01);
 	 //printf("size %d, sending: %s\n", mes_size, message_raw);
-	 cnt = sendto(sock, message_raw, mes_size, MSG_DONTROUTE, (struct sockaddr *) &addr, addrlen);
+	 cnt = sendto(sock, message_raw, mes_size, 0, (struct sockaddr *) &addr, addrlen);
 	 //printf("\nerror:%d",cnt);
 	 if (cnt < 0) {
 		//perror("sendto1");
