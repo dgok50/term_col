@@ -47,7 +47,7 @@ int send_multicast(char *broadcast_addr, int *port_addr, char *message)
 	 }
 	 //sleep(5);
 	 //}
- //close(sock);
+ close(sock);
  return 0;
 }
 /*
