@@ -23,6 +23,9 @@ int send_multicast(char *broadcast_addr, int *port_addr, char *message)
  	 return -1;
     }
    }
+   setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof optval);
+   setsockopt(sock, SOL_SOCKET, SO_BROADCAST, &optval, sizeof optval);
+   
    bzero((char *)&addr, sizeof(addr));
    addr.sin_family = AF_INET;
    addr.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -36,7 +39,7 @@ int send_multicast(char *broadcast_addr, int *port_addr, char *message)
    //while (1) {
 	 sprintf(message_raw, "%c%s%c",25,message,01);
 	 //printf("size %d, sending: %s\n", mes_size, message_raw);
-	 cnt = sendto(sock, message_raw, mes_size, 0, (struct sockaddr *) &addr, addrlen);
+	 cnt = sendto(sock, message_raw, mes_size, MSG_DONTROUTE, (struct sockaddr *) &addr, addrlen);
 	 //printf("\nerror:%d",cnt);
 	 if (cnt < 0) {
 		//perror("sendto1");
