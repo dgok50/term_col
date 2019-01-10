@@ -19,6 +19,7 @@
 #include "ups_parse.c"
 #include "usred.c"
 #include "a1fl.c"
+#include "kuip_t_conf.c"
 
 /*Сетевая часть*/
 #include <sys/types.h>
@@ -652,8 +653,9 @@ int main(int argc, char *argv[]) {
                 }
                 write_usred(&sred_main, 13, &e_temp, &e_hum, &e_lux, &e_mctmp, &e_pre, &e_b_temp, &e_mvc, &e_vin,
                             &e_evc, &e_mq7, &e_mq9, &e_mq9l, &t_temp);
-                fprintf(NAROD,
-                        "#b8-27-eb-8d-59-05#KUIP#55.7241#37.8174#155\n#TempN#%f#Температура св (DHT21)\n#LUX#%f#Освещённость\n#MCTMP#%f#Темп ВБ1 МК\n",
+		fprintf(NAROD,
+                        "#%s#%s#%f#%f#%d\n", config_mac, config_name, config_pos_lat, config_pos_lon, config_pos_hi);
+                fprintf(NAROD,"#TempN#%f#Температура св (DHT21)\n#LUX#%f#Освещённость\n#MCTMP#%f#Темп ВБ1 МК\n",
                         e_temp, e_lux, e_mctmp);
                 if (secr == 1) {
                     fprintf(NAROD, "#TempS#%f#Температура юг (DHT22)\n", s_temp);

@@ -1,0 +1,5 @@
+char config_mac[] = "ff-ff-ff-ff-ff-ff";
+char config_name[] = "KUIP Repiter";
+float config_pos_lat = 55.8921;
+float config_pos_lon = 37.8324; 
+float config_pos_hi = 200; //Высота над уровнем моря
