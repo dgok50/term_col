@@ -336,7 +336,7 @@ int main(int argc, char *argv[]) {
     double unixtime = 0, e_hum = -100, e_temp = -100, e_fw = 0, e_lux = -100, e_b_temp = DSE;
     double e_mvc = -100, e_evc = DSE, e_pre = DSE, e_mctmp = DSE, e_vin = DSE, e_mq7 = DSE, e_mq9 = DSE, e_mq9l = DSE;
     double s_evc = 0, s_temp = 0, s_hum = 0, s_fw = 0, hum = -100, hi_temp = -100, t_temp = -100;
-    double ups_v = -100, ups_load = -100, ups_frq = -100, ups_bat_stat = -100, ups_stat = DSE, error_rate_f = 0, error_rate_s = 0;
+    double ups_v = -100, ups_load = -100, ups_load_raw = -100, ups_frq = -100, ups_bat_stat = -100, ups_stat = DSE, error_rate_f = 0, error_rate_s = 0;
     int tmp_fw = 0, sock = -1;
     unsigned int errors_f = 0, errors_s = 0, cicles_f = 0, cicles_s = 0, error_now_f = 0, error_now_s = 0;
     char tst[256];
@@ -427,6 +427,7 @@ int main(int argc, char *argv[]) {
                 sleep(1);
             }
             if (ups_stat == 0) {
+                ups_load_raw = ups_load;
                 ups_load = (ups_load / 100) * 375;
                 write_usred(&sred, 4, &ups_frq, &ups_v, &ups_load,
                             &ups_bat_stat);
@@ -513,6 +514,8 @@ int main(int argc, char *argv[]) {
                 if (e_hum >= 90 || e_hum >= s_hum * 1.3) {
                     hum = s_hum;
                 }
+                if ( (s_temp - e_temp) > 5)
+            	    hum = e_hum;
                 if (cicles_s != 0) {
                     error_rate_s = (float) errors_s / cicles_s;
                 }
@@ -654,7 +657,7 @@ int main(int argc, char *argv[]) {
                 write_usred(&sred_main, 13, &e_temp, &e_hum, &e_lux, &e_mctmp, &e_pre, &e_b_temp, &e_mvc, &e_vin,
                             &e_evc, &e_mq7, &e_mq9, &e_mq9l, &t_temp);
 		fprintf(NAROD,
-                        "#%s#%s#%f#%f#%d\n", config_mac, config_name, config_pos_lat, config_pos_lon, config_pos_hi);
+                        "#%s#%s#%f#%f#%.0f\n", config_mac, config_name, config_pos_lat, config_pos_lon, config_pos_hi);
                 fprintf(NAROD,"#TempN#%f#Температура св (DHT21)\n#LUX#%f#Освещённость\n#MCTMP#%f#Темп ВБ1 МК\n",
                         e_temp, e_lux, e_mctmp);
                 if (secr == 1) {
@@ -748,7 +751,7 @@ int main(int argc, char *argv[]) {
                         "Com server UPS:\\par\n Line Frequency: %.2fHz\\par\n",
                         ups_frq);
                 fprintf(RTF, " Line Voltage: %.2fV\\par\n", ups_v);
-                fprintf(RTF, " Load: %f%c\\par\n", ups_load, 37);
+                fprintf(RTF, " Load: %f%c\\par\n", ups_load_raw, 37);
                 fprintf(RTF, " Power cons: %.3fW\\par\n", ups_load);
                 fprintf(RTF, " Bat charge: %.2f%c\\par\n\\par\n", ups_bat_stat,
                         37);
