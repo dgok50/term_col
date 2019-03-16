@@ -751,7 +751,7 @@ int main(int argc, char *argv[]) {
                         "Com server UPS:\\par\n Line Frequency: %.2fHz\\par\n",
                         ups_frq);
                 fprintf(RTF, " Line Voltage: %.2fV\\par\n", ups_v);
-                fprintf(RTF, " Load: %f%c\\par\n", ups_load_raw, 37);
+                fprintf(RTF, " Load: %.0f%c\\par\n", ups_load_raw, 37);
                 fprintf(RTF, " Power cons: %.3fW\\par\n", ups_load);
                 fprintf(RTF, " Bat charge: %.2f%c\\par\n\\par\n", ups_bat_stat,
                         37);
