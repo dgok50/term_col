@@ -511,7 +511,7 @@ int main(int argc, char *argv[]) {
                 if (e_temp > s_temp && s_temp != -100) {
                     t_temp = s_temp;
                 }
-                if (e_hum >= 90 || e_hum >= s_hum * 1.3 || e_hum <= 10) {
+                if (e_hum >= 90 || e_hum >= s_hum * 1.3) {
                     hum = s_hum;
                 }
                 if ( (s_temp - e_temp) > 5)
